@@ -1,3 +1,5 @@
+import java.awt.Color;
+
 /**
  * An interface for a player in an implementation of
  * Bammi. Is implemented by User and should be implemented
@@ -7,7 +9,7 @@ interface Player{
 
 	public void addPie();
 
-	public void RemovePie();
+	public void removePie();
 
 	public int getNumberOfPies();
 	

@@ -5,7 +5,7 @@
  */
 class Pie{
 
-	Pie[] neighbors; //angr√§nsande pajer
+	Pie[] neighbors; //angr‰nsande pajer
 	int maxSlices; //Neighbors.length
 	int currentSlices;
 	Player owner; //Pointer
@@ -23,9 +23,10 @@ class Pie{
 		}
 		else{
 			currentSlices++;
-			if(owner = null){
+			if(owner == null){
 				player.addPie();
 				owner = player;
+			}
 			else if(owner != player){ //triggered by explosion
 				player.addPie();
 				owner.removePie();
@@ -37,8 +38,9 @@ class Pie{
 
 	private void explode(Player player){
 		currentSlices = 1;
-		for(Pie neighbor = range neigbors){
+		for(Pie neighbor :neighbors){
 			neighbor.addSlice(player);
 		}
 		//TODO: graphics
 	}
+}
