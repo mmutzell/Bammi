@@ -5,7 +5,7 @@
  */
 class Pie{
 
-	Pie[] neighbors; //angränsande pajer
+	Pie[] neighbors; //adjacent pies
 	int maxSlices; //Neighbors.length
 	int currentSlices;
 	Player owner; //Pointer
