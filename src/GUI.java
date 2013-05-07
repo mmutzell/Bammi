@@ -2,16 +2,29 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-
+/**
+ * A graphical user interface for Bammi. The main window
+ * that the usere interacts with during use.
+ * 
+ * @author Martin Mützell
+ * @version 2013-05-07
+ */
 public class GUI {
 
 	private JFrame frame;
 	
+	/**
+	 * Constructs a new GUI.
+	 */
 	public GUI() {
 		frame = new JFrame("Bammi");
 		makeMenuBar();
 	}
 	
+	/**
+	 * Creates a menu bar for the window with the menus
+	 * "Game" and "Help".
+	 */
 	private void makeMenuBar(){
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
@@ -20,13 +33,13 @@ public class GUI {
 		JMenu gameMenu = new JMenu("Game");
 		menuBar.add(gameMenu);
 		
-		JMenuItem restart = new JMenuItem("New game");
-		restart.addActionListener(new ActionListener() {
+		JMenuItem newGame = new JMenuItem("New game");
+		newGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
-				restart();
+				newGame();
 			}
 		});
-		gameMenu.add(restart);
+		gameMenu.add(newGame);
 		
 		JMenuItem settings = new JMenuItem("Settings");
 		settings.addActionListener(new ActionListener() {
@@ -65,22 +78,37 @@ public class GUI {
 		helpMenu.add(aboutBammi);
 	}
 	
-	private void restart(){
+	/**
+	 * Starts a new game.
+	 */
+	private void newGame(){
 		//TODO
 	}
 	
+	/**
+	 * Brings up the settings menu.
+	 */
 	private void settings(){
 		//TODO
 	}
 	
+	/**
+	 * Quits the application.
+	 */
 	private void quit(){
 		//TODO
 	}
 	
+	/**
+	 * Brings up a new frame, displaying the rules.
+	 */
 	private void howToPlay(){
 		//TODO
 	}
 	
+	/**
+	 * Brings up a new frame with information about the game.
+	 */
 	private void aboutBammi(){
 		//TODO
 	}
