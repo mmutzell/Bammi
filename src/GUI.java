@@ -4,7 +4,7 @@ import javax.swing.*;
 
 /**
  * A graphical user interface for Bammi. The main window
- * that the usere interacts with during use.
+ * that the user interacts with during use.
  * 
  * @author Martin Mützell
  * @version 2013-05-07

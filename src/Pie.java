@@ -5,12 +5,14 @@
  */
 class Pie{
 
+	GUI home;
 	Pie[] neighbors; //adjacent pies
 	int maxSlices; //Neighbors.length
 	int currentSlices;
 	Player owner; //Pointer
 
-	public Pie(Pie[] neighbors){
+	public Pie(GUI home, Pie[] neighbors){
+		this.home = home;
 		this.neighbors = neighbors; //Pointer
 		maxSlices = neighbors.length;
 		currentSlices = 0;
