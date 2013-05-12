@@ -6,15 +6,15 @@
 class Pie{
 
 	GUI home;
-	Pie[] neighbors; //adjacent pies
+	java.util.Set<Pie> neighbors; //adjacent pies
 	int maxSlices; //Neighbors.length
 	int currentSlices;
 	Player owner; //Pointer
 
-	public Pie(GUI home, Pie[] neighbors){
-		this.home = home;
-		this.neighbors = neighbors; //Pointer
-		maxSlices = neighbors.length;
+	public Pie(GUI home){
+		this.home = home;  //Pointer
+		neighbors = new java.util.Set<Pie>;
+		maxSlices = 0;
 		currentSlices = 0;
 		owner = null;
 	}
@@ -36,6 +36,14 @@ class Pie{
 			}
 		}
 		//TODO: graphics
+	}
+	
+	public void addNeighbor(Pie p){
+		if(neighbors.add(p)) maxSlices++;
+	}
+	
+	public void removeNeighbor(Pie p){
+		if(neighbors.remove(p)) maxSlices--;
 	}
 
 	private void explode(Player player){
