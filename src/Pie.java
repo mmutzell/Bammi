@@ -6,14 +6,14 @@
 class Pie{
 
 	GUI home;
-	java.util.Set<Pie> neighbors; //adjacent pies
+	java.util.HashSet<Pie> neighbors; //adjacent pies
 	int maxSlices; //Neighbors.length
 	int currentSlices;
 	Player owner; //Pointer
 
 	public Pie(GUI home){
 		this.home = home;  //Pointer
-		neighbors = new java.util.Set<Pie>;
+		neighbors = new java.util.HashSet<Pie>();
 		maxSlices = 0;
 		currentSlices = 0;
 		owner = null;
