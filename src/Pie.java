@@ -19,7 +19,13 @@ class Pie{
 		owner = null;
 	}
 
-	public void addSlice(Player player){ //unchecked, optimization possible
+	public void addSlice(Player player){
+		if(owner == null || owner == player){
+			add(player);
+		}
+	}
+	
+	private void add(Player player){
 		if(currentSlices == maxSlices){
 			explode(player);
 		}
@@ -61,7 +67,7 @@ class Pie{
 	private void explode(Player player){
 		currentSlices = 1;
 		for(Pie neighbor :neighbors){
-			neighbor.addSlice(player);
+			neighbor.add(player);
 		}
 		//TODO: graphics
 	}
