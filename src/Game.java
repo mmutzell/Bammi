@@ -23,4 +23,5 @@ public class Game {
 	public Player getCurrentPlayer(){
 		return null;
 	}
+	
 }

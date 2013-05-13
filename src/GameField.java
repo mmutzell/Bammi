@@ -13,7 +13,6 @@ import javax.swing.JPanel;
  * in Sean Wenströms and Martin Mützells implementation of
  * Bammi.
  * @author Martin Mützell
- *
  */
 public class GameField extends JPanel {
 
@@ -73,14 +72,14 @@ public class GameField extends JPanel {
 		for(ArrayList<coordinate> c : pieAreas.values()){
 			coordinate cd = c.get((int) (Math.random()*c.size()));
 			final Pie p = map[cd.x][cd.y];
-			graphicalPie gp = new graphicalPie(new JButton(new PieIcon()), cd);
+			int border = pieSize/10;
+			graphicalPie gp = new graphicalPie(new JButton(new PieIcon(p, pieSize-2*border)), cd);
 			gPies.put(p, gp);
 			gPies.get(p).button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e){
 					p.addSlice(Game.getCurrentPlayer());
 				}
 			});
-			int border = pieSize/10;
 			gp.button.setBounds(gp.coordinate.x+border, gp.coordinate.y+border, pieSize-2*border, pieSize-2*border);
 			add(gp.button);
 		}
