@@ -21,6 +21,7 @@ public class GUI {
 		frame = new JFrame("Bammi");
 		makeMenuBar();
 		makeGameField(map, size);
+		frame.makeVisible();
 	}
 	
 	/**
@@ -43,13 +44,27 @@ public class GUI {
 		});
 		gameMenu.add(newGame);
 		
-		JMenuItem settings = new JMenuItem("Settings");
+		//--------------------------------------------------
+		//Settings submenu
+		
+		JMenu settings = makeSettingsMenu();
+		gameMenu.add(settings);
+
+		
+		
+		
+		
+		/*
 		settings.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
 				settings();
 			}
 		});
+		*/
+		
+		
 		gameMenu.add(settings);
+		//--------------------------------------------------
 		
 		JMenuItem quit = new JMenuItem("Quit");
 		quit.addActionListener(new ActionListener() {
@@ -92,17 +107,19 @@ public class GUI {
 	}
 	
 	/**
+	 * DEPRECATED
 	 * Brings up the settings menu.
 	 */
-	private void settings(){
-		//TODO
-	}
-	
+//	private void settings(){
+//		//TODO
+//	}
+	 
+	 
 	/**
 	 * Quits the application.
 	 */
 	private void quit(){
-		//TODO
+		System.exit(0);
 	}
 	
 	/**
@@ -116,6 +133,47 @@ public class GUI {
 	 * Brings up a new frame with information about the game.
 	 */
 	private void aboutBammi(){
+		//TODO
+	}
+	
+	/**
+	 * Sets up the "settings" submenu.
+	 */
+	private JMenu makeSettingsMenu(){
+		JMenu settings = new JMenu("Settings");
+		
+		JMenuItem players = new JMenuItem("Number of players");
+		players.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e){
+				settings_showNumberOfPlayers(); 
+			}
+		})
+		settings.add(settings_players);
+		
+		JMenuItem size = new JMenuItem("Map size");
+		size.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				settings_showMapSize();
+			}
+		})
+		settings.add(size);
+		
+		return settings;
+	}
+	
+	/**
+	 * Displays a dialog box for entering the new size.
+	 */
+	private void settings_showMapSize(){
+		//TODO
+	}
+	
+	/**
+	 * Displays a dialog for entering the new
+	 * number of players.
+	 */
+	private void settings_showNumberOfPlayers(){
 		//TODO
 	}
 }
