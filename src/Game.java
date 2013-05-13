@@ -12,12 +12,15 @@ public class Game {
 	public static void main(String[] args) {
 		size = 5;
 		//map = Initiate.generateMap(size);
-		home = new GUI(map, size, players.length);
+		
+		home = new GUI();
 
 	}
 	
+//	public Game(Player[] p, )
+	
 
-	public static Player getCurrentPlayer(){
+	public Player getCurrentPlayer(){
 		return null;
 	}
 }

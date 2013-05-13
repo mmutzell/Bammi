@@ -10,19 +10,27 @@ import javax.swing.*;
  * @version 2013-05-13
  */
 public class GUI {
-
+	
+	private static final int PIE_SIZE = 40; //pieSize to send to gameField
+	private static final int DFLT_SIZE = 10; //default size of map
+	
 	private JFrame frame;
 	private JPanel panel;
 	private GameField gameField;
 	
+	private ArrayList<Player> players;
+	private int gamefieldSize;
+	
+	
 	/**
 	 * Constructs a new GUI.
 	 */
-	public GUI(Pie[][] map, int size, int numberOfPlayers) {
+	public GUI() {
+		size = DFLT_SIZE; //
 		frame = new JFrame("Bammi");
 		makeMenuBar();
 		panel = new JPanel();
-		gameField = new GameField(map, size, 40);
+		gameField = new GameField(Init.generate(size), size, PIE_SIZE);
 		panel.add(gameField);
 		frame.add(panel);
 		frame.setVisible(true);
@@ -48,27 +56,10 @@ public class GUI {
 		});
 		gameMenu.add(newGame);
 		
-		//--------------------------------------------------
 		//Settings submenu
 		
 		JMenu settings = makeSettingsMenu();
 		gameMenu.add(settings);
-
-		
-		
-		
-		
-		/*
-		settings.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e){
-				settings();
-			}
-		});
-		*/
-		
-		
-		gameMenu.add(settings);
-		//--------------------------------------------------
 		
 		JMenuItem quit = new JMenuItem("Quit");
 		quit.addActionListener(new ActionListener() {
@@ -104,16 +95,8 @@ public class GUI {
 	 * Starts a new game.
 	 */
 	private void newGame(){
-		//TODO
+		GameField = new GameField();
 	}
-	
-	/**
-	 * DEPRECATED
-	 * Brings up the settings menu.
-	 */
-//	private void settings(){
-//		//TODO
-//	}
 	 
 	 
 	/**
