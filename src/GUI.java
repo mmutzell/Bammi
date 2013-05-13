@@ -6,13 +6,13 @@ import javax.swing.*;
  * A graphical user interface for Bammi. The main window
  * that the user interacts with during use.
  * 
- * @author Martin Mützell
- * @version 2013-05-07
+ * @authors Martin Mützell, Sean Wenström
+ * @version 2013-05-13
  */
 public class GUI {
 
 	private JFrame frame;
-	private JPanel gameField;
+	private GameField gameField;
 	
 	/**
 	 * Constructs a new GUI.
@@ -20,8 +20,9 @@ public class GUI {
 	public GUI(Pie[][] map, int size, int numberOfPlayers) {
 		frame = new JFrame("Bammi");
 		makeMenuBar();
-		makeGameField(map, size);
-		frame.makeVisible();
+		gameField = new GameField(map, size, 40);
+		frame.add(gameField);
+		frame.setVisible(true);
 	}
 	
 	/**
@@ -95,9 +96,6 @@ public class GUI {
 		helpMenu.add(aboutBammi);
 	}
 	
-	private void makeGameField(Pie[][] map, int size){
-		
-	}
 	
 	/**
 	 * Starts a new game.
@@ -147,7 +145,7 @@ public class GUI {
 			public void actionPerformed(ActionEvent e){
 				settings_showNumberOfPlayers(); 
 			}
-		})
+		});
 		settings.add(settings_players);
 		
 		JMenuItem size = new JMenuItem("Map size");
@@ -156,7 +154,7 @@ public class GUI {
 			public void actionPerformed(ActionEvent e){
 				settings_showMapSize();
 			}
-		})
+		});
 		settings.add(size);
 		
 		return settings;

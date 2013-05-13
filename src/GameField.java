@@ -8,13 +8,23 @@ import java.util.HashMap;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-
+/**
+ * Handles the drawing and interaction with the gamefield
+ * in Sean Wenströms and Martin Mützells implementation of
+ * Bammi.
+ * @author Martin Mützell
+ *
+ */
 public class GameField extends JPanel {
 
 	private Pie[][] map;
-	private graphicalPie[] gPies;
+	private HashMap<Pie, graphicalPie> gPies;
 	private int size, pieSize;
 	
+	/**
+	 * Does not contain actual coordinates,
+	 * but rather a position in the grid of map.
+	 */
 	private class coordinate{
 		int x, y;
 		public coordinate(int x, int y){
@@ -23,20 +33,28 @@ public class GameField extends JPanel {
 		}
 	}
 	
+	/**
+	 * The visual representation of a Pie can
+	 * be accessed via this.
+	 */
 	private class graphicalPie{
-		Pie pie;
 		JButton button;
 		coordinate coordinate;
-		public graphicalPie(Pie p, JButton b, coordinate c){
-			pie = p;
+		public graphicalPie(JButton b, coordinate c){
 			button = b;
 			coordinate = c;
 		}
 	}
 	
+	/**
+	 * Creates a new GameField.
+	 * @param map
+	 * @param size
+	 * @param pieSize
+	 */
 	public GameField(Pie[][] map, int size, int pieSize){
 		super();
-		setLayout(null);
+		setLayout(null);	//every component needs to be placed manually
 		this.map = map;
 		this.size = size;
 		this.pieSize = pieSize;
@@ -51,21 +69,26 @@ public class GameField extends JPanel {
 				pieAreas.get(currentPie).add(new coordinate(i, j));
 			}
 		}
-		gPies = new graphicalPie[pieAreas.size()];
-		int i = 0;
+		gPies = new HashMap<Pie, graphicalPie>(pieAreas.size());
 		for(ArrayList<coordinate> c : pieAreas.values()){
 			coordinate cd = c.get((int) (Math.random()*c.size()));
 			final Pie p = map[cd.x][cd.y];
-			gPies[i] = new graphicalPie(p, new JButton(new PieIcon()), cd);
-			gPies[i].button.addActionListener(new ActionListener() {
+			graphicalPie gp = new graphicalPie(new JButton(new PieIcon()), cd);
+			gPies.put(p, gp);
+			gPies.get(p).button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e){
 					p.addSlice(Game.getCurrentPlayer());
 				}
 			});
-			i++;
+			int border = pieSize/10;
+			gp.button.setBounds(gp.coordinate.x+border, gp.coordinate.y+border, pieSize-2*border, pieSize-2*border);
+			add(gp.button);
 		}
 	}
 	
+	/**
+	 * Updates the visuals of the gamefield.
+	 */
 	@Override
 	protected void paintComponent(Graphics g){
 		//colors the field accordingly to the gamestate
@@ -95,11 +118,8 @@ public class GameField extends JPanel {
 			}
 		}
 		
-		//Places the Pies
-		for(final graphicalPie gp : gPies){
-			int border = pieSize/10;
-			gp.button.setBounds(gp.coordinate.x+border, gp.coordinate.y+border, pieSize-2*border, pieSize-2*border);
-			add(gp.button);
+		//Paints the Pies
+		for(graphicalPie gp : gPies.values()){
 			gp.button.repaint();
 		}
 	}

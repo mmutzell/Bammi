@@ -5,6 +5,8 @@ import javax.swing.Icon;
 
 
 public class PieIcon implements Icon {
+	
+	private int height, width;
 
 	@Override
 	public int getIconHeight() {
@@ -19,7 +21,7 @@ public class PieIcon implements Icon {
 	}
 
 	@Override
-	public void paintIcon(Component arg0, Graphics arg1, int arg2, int arg3) {
+	public void paintIcon(Component c, Graphics g, int x, int y) {
 		// TODO Auto-generated method stub
 
 	}
