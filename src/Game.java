@@ -17,4 +17,7 @@ public class Game {
 	}
 	
 
+	public static Player getCurrentPlayer(){
+		return null;
+	}
 }

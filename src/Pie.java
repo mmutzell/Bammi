@@ -45,6 +45,10 @@ class Pie{
 	public void removeNeighbor(Pie p){
 		if(neighbors.remove(p)) maxSlices--;
 	}
+	
+	public Player getOwner(){
+		return owner;
+	}
 
 	private void explode(Player player){
 		currentSlices = 1;
