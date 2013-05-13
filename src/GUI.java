@@ -27,6 +27,11 @@ public class GUI {
 	 */
 	public GUI() {
 		size = DFLT_SIZE; //
+		players = new ArrayList<Player>();
+		players.add(new User(Color.BLUE));
+		players.add(new User(Color.RED));
+		Game.setPlayers(players.toArray());
+		
 		frame = new JFrame("Bammi");
 		makeMenuBar();
 		panel = new JPanel();
