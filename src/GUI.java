@@ -12,13 +12,15 @@ import javax.swing.*;
 public class GUI {
 
 	private JFrame frame;
+	private JPanel gameField;
 	
 	/**
 	 * Constructs a new GUI.
 	 */
-	public GUI() {
+	public GUI(Pie[][] map, int size, int numberOfPlayers) {
 		frame = new JFrame("Bammi");
 		makeMenuBar();
+		makeGameField(map, size);
 	}
 	
 	/**
@@ -76,6 +78,10 @@ public class GUI {
 			}
 		});
 		helpMenu.add(aboutBammi);
+	}
+	
+	private void makeGameField(Pie[][] map, int size){
+		
 	}
 	
 	/**
