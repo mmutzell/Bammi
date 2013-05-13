@@ -5,11 +5,11 @@
  */
 class Pie{
 
-	GUI home;
-	java.util.HashSet<Pie> neighbors; //adjacent pies
-	int maxSlices; //Neighbors.length
-	int currentSlices;
-	Player owner; //Pointer
+	private GUI home;
+	private java.util.HashSet<Pie> neighbors; //adjacent pies
+	private int maxSlices; //Neighbors.length
+	private int currentSlices;
+	private Player owner; //Pointer
 
 	public Pie(GUI home){
 		this.home = home;  //Pointer
@@ -48,6 +48,14 @@ class Pie{
 	
 	public Player getOwner(){
 		return owner;
+	}
+	
+	public int maxSlices(){
+		return maxSlices;
+	}
+	
+	public int currentSlices(){
+		return currentSlices;
 	}
 
 	private void explode(Player player){

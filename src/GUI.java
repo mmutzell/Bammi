@@ -12,6 +12,7 @@ import javax.swing.*;
 public class GUI {
 
 	private JFrame frame;
+	private JPanel panel;
 	private GameField gameField;
 	
 	/**
@@ -20,8 +21,10 @@ public class GUI {
 	public GUI(Pie[][] map, int size, int numberOfPlayers) {
 		frame = new JFrame("Bammi");
 		makeMenuBar();
+		panel = new JPanel();
 		gameField = new GameField(map, size, 40);
-		frame.add(gameField);
+		panel.add(gameField);
+		frame.add(panel);
 		frame.setVisible(true);
 	}
 	
@@ -146,7 +149,7 @@ public class GUI {
 				settings_showNumberOfPlayers(); 
 			}
 		});
-		settings.add(settings_players);
+		settings.add(players);
 		
 		JMenuItem size = new JMenuItem("Map size");
 		size.addActionListener(new ActionListener(){
