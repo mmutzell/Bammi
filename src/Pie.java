@@ -30,6 +30,7 @@ class Pie{
 			else{
 				add(player);
 			}
+			home.repaint();
 			ifNext();
 		}
 	}
