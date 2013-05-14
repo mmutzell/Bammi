@@ -17,9 +17,9 @@ import javax.swing.JPanel;
 
 /**
  * Handles the drawing and interaction with the gamefield
- * in Sean Wenströms and Martin Mützells implementation of
+ * in Sean WenstrÃ¶ms and Martin MÃ¼tzells implementation of
  * Bammi.
- * @author Martin Mützell
+ * @author Martin MÃ¼tzell
  */
 public class GameField extends JPanel {
 
@@ -126,6 +126,10 @@ public class GameField extends JPanel {
 				}
 			}
 		}
+		//Paints the Pies
+		for(graphicalPie gp : gPies.values()){
+			gp.button.repaint();
+		}
 		
 		//draws the borders differentiating the pie areas
 		g.setColor(Color.black);
@@ -140,10 +144,6 @@ public class GameField extends JPanel {
 				}
 			}
 		}
-		
-		//Paints the Pies
-		for(graphicalPie gp : gPies.values()){
-			gp.button.repaint();
-		}
+
 	}
 }
