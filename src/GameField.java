@@ -98,6 +98,11 @@ public class GameField extends JPanel {
 					p.addSlice(Game.getCurrentPlayer());
 				}
 			});
+			gp.button.setFocusPainted(false);
+			gp.button.setMargin(new Insets(0, 0, 0, 0));
+			gp.button.setContentAreaFilled(false);
+			gp.button.setBorderPainted(false);
+			gp.button.setOpaque(false);
 			gp.button.setPreferredSize(new Dimension(pieSize-2*border, pieSize-2*border));
 			grid[gp.coordinate.x][gp.coordinate.y].add(gp.button);
 		}
