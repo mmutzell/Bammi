@@ -35,7 +35,7 @@ public class GUI extends JFrame{
 	private JPanel turnBoard, scoreBoard;
 	
 	private ArrayList<Player> players;
-	private Color[] colors = new Color[] {null, null, Color.GREEN, Color.YELLOW, Color.BLACK};
+	private Colour[] colors = new Colour[] {null, null, new Colour(2), new Colour(3), new Colour(4), new Colour(5)};
 	
 	private int size;
 	
@@ -48,8 +48,8 @@ public class GUI extends JFrame{
 		 
 		size = DFLT_SIZE; //
 		players = new ArrayList<Player>();
-		players.add(new User(Color.BLUE));
-		players.add(new User(Color.RED));
+		players.add(new User(new Colour(1)));
+		players.add(new User(new Colour(0)));
 		Game.setPlayers(players);
 				
 		makeMenuBar();
@@ -239,9 +239,9 @@ public class GUI extends JFrame{
 		for(Color c : colors){
 			if(c == null) size--;
 		}
-		Color[] options = new Color[size];
+		Colour[] options = new Colour[size];
 		int actualIndex = 0;
-		for(Color c : colors){
+		for(Colour c : colors){
 			if(c != null){
 				options[actualIndex] = c;
 				actualIndex++;
@@ -251,16 +251,10 @@ public class GUI extends JFrame{
 			JOptionPane.showMessageDialog(this, "No more players left to add.");
 			return;
 		}
-		Color chosenColor = options[JOptionPane.showOptionDialog(this, "Please select a color:", "New player" , JOptionPane.PLAIN_MESSAGE, JOptionPane.DEFAULT_OPTION, null, options, options[0])];
+		Colour chosenColor = options[JOptionPane.showOptionDialog(this, "Please select a color:", "New player" , JOptionPane.PLAIN_MESSAGE, JOptionPane.DEFAULT_OPTION, null, options, options[0])];
 		if(chosenColor != null) players.add(new User(chosenColor));
 		//nullify chosen color in main array
-		for(int i = 0; i < colors.length; i++){
-			if(colors[i] == chosenColor){
-				colors[i] = null;
-				break;
-			}
-		}
-		
+		colors[chosenColor.getIndex()] = null;
 		
 		for(JLabel s : score){
 			pane.remove(s);
@@ -294,12 +288,7 @@ public class GUI extends JFrame{
 		}
 		
 		//place color back as choosable
-		for(i = 0; i < colors.length; i++){
-			if(colors[i] == null){
-				colors[i] = chosenColor;
-				break;
-			}
-		}
+		colors[((Colour)chosenColor).getIndex()] = (Colour)chosenColor;
 
 		for(JLabel s : score){
 			pane.remove(s);

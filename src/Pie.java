@@ -55,6 +55,7 @@ class Pie{
 	private void ifNext(){
 		if(ExplosionManager.isEmpty()){
 			Game.nextPlayer();
+			home.repaint();
 		}
 	}
 	
