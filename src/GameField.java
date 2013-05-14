@@ -13,7 +13,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.JButton;
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
 
 /**
  * Handles the drawing and interaction with the gamefield
@@ -21,12 +24,13 @@ import javax.swing.JPanel;
  * Bammi.
  * @author Martin Mützell
  */
-public class GameField extends JPanel {
+public class GameField extends JLayeredPane {
 
 	private Pie[][] map;
 	private JPanel[][] grid;
 	private HashMap<Pie, graphicalPie> gPies;
 	private int size, pieSize;
+	private JPanel borders;
 	
 	/**
 	 * Does not contain actual coordinates,
@@ -59,10 +63,10 @@ public class GameField extends JPanel {
 	 * @param size
 	 * @param pieSize
 	 */
-	public GameField(Pie[][] map, int size, int pieSize){
+	public GameField(final Pie[][] map, final int size, final int pieSize){
 		super();
 		setLayout(new GridBagLayout());
-		setSize(new Dimension(size*(pieSize*2+1), size*(pieSize*2+1)));
+		setSize(new Dimension(size*pieSize, size*pieSize));
 		setBackground(Color.white);
 		this.map = map;
 		this.size = size;
@@ -73,19 +77,20 @@ public class GameField extends JPanel {
 		for(int i=0; i<size; i++){
 			for(int j=0; j<size; j++){
 				GridBagConstraints c = new GridBagConstraints();
-				c.gridx = i;
-				c.gridy = j;
-				//c.insets = new Insets(1, 1, 1, 1);
+				c.gridx = i*2+1;
+				c.gridy = j*2+1;
+				c.fill = GridBagConstraints.BOTH;
 				Pie currentPie = map[i][j];
 				grid[i][j] = new JPanel();
 				grid[i][j].setPreferredSize(new Dimension(pieSize, pieSize));
 				add(grid[i][j], c);
+				setLayer(grid[i][j], 0);
 				if(!pieAreas.containsKey(currentPie)){
 					pieAreas.put(currentPie, new ArrayList<coordinate>());
 				}
 				pieAreas.get(currentPie).add(new coordinate(i, j));
 			}
-		}
+		}			
 		gPies = new HashMap<Pie, graphicalPie>(pieAreas.size());
 		for(ArrayList<coordinate> c : pieAreas.values()){
 			coordinate cd = c.get((int) (Math.random()*c.size()));
@@ -106,7 +111,99 @@ public class GameField extends JPanel {
 			gp.button.setPreferredSize(new Dimension(pieSize-2*border, pieSize-2*border));
 			grid[gp.coordinate.x][gp.coordinate.y].add(gp.button);
 		}
+		
+		borders = new JPanel(){
+			protected void paintComponent(Graphics g){
+				g.setColor(Color.black);
+				((Graphics2D) g).setStroke(new BasicStroke(1));
+				setOpaque(false);
+				for(int i=0; i<size-1; i++){
+					for(int j=0; j<size-1; j++){
+						Pie currentPie = map[i][j];
+						if(currentPie != map[i+1][j]){
+							g.drawLine((i+1)*pieSize, j*pieSize, (i+1)*pieSize, (j+1)*pieSize);
+						}
+						if(currentPie != map[i][j+1]){
+							g.drawLine(i*pieSize, (j+1)*pieSize, (i+1)*pieSize, (j+1)*pieSize);
+						}
+					}
+				}
+			}
+		};
+		borders.setPreferredSize(new Dimension(size*pieSize, size*pieSize));
+		borders.setOpaque(false);
+		add(borders);
+		setLayer(borders, 100);
+		
+		/*for(int i=0; i<size; i++){
+			GridBagConstraints c = new GridBagConstraints();
+			c.gridx = 0;
+			c.gridy = i;
+			c.fill = GridBagConstraints.HORIZONTAL;
+			c.weightx = 1;
+			JSeparator sep = new JSeparator(SwingConstants.HORIZONTAL);
+			sep.setPreferredSize(new Dimension(pieSize, 1));
+			add(sep, c);
+		}
+		for(int i=0; i<size-1; i++){
+			for(int j=0; j<size-1; j++){
+				GridBagConstraints c = new GridBagConstraints();
+				c.gridx = i*2;
+				c.gridy = j*2;
+				Pie currentPie = map[i][j];
+				if(currentPie != map[i+1][j]){
+					JSeparator sep = new JSeparator(SwingConstants.VERTICAL);
+					sep.setPreferredSize(new Dimension(1, pieSize));
+					add(sep, c);
+				}
+				if(currentPie != map[i][j+1]){
+					JSeparator sep = new JSeparator(SwingConstants.HORIZONTAL);
+					sep.setPreferredSize(new Dimension(pieSize, 1));
+					add(sep, c);
+				}
+			}
+		}*/
+		
+		/*add(new JLayeredPane(){
+			protected void paintComponent(Graphics g){
+				g.setColor(Color.black);
+				setOpaque(false);
+				for(int i=0; i<size-1; i++){
+					for(int j=0; j<size-1; j++){
+						Pie currentPie = map[i][j];
+						if(currentPie != map[i+1][j]){
+							g.drawLine((i+1)*pieSize, j*pieSize, (i+1)*pieSize, (j+1)*pieSize);
+						}
+						if(currentPie != map[i][j+1]){
+							g.drawLine(i*pieSize, (j+1)*pieSize, (i+1)*pieSize, (j+1)*pieSize);
+						}
+					}
+				}
+			}
+		});*/
+		
+		
 	}
+	
+	/*private class borders extends JLayeredPane{
+		public borders(){
+			setOpaque(false);
+		}
+		protected void paintComponent(Graphics g){
+			g.setColor(Color.black);
+			for(int i=0; i<size-1; i++){
+				for(int j=0; j<size-1; j++){
+					Pie currentPie = map[i][j];
+					if(currentPie != map[i+1][j]){
+						g.drawLine((i+1)*pieSize, j*pieSize, (i+1)*pieSize, (j+1)*pieSize);
+					}
+					if(currentPie != map[i][j+1]){
+						g.drawLine(i*pieSize, (j+1)*pieSize, (i+1)*pieSize, (j+1)*pieSize);
+					}
+				}
+			}
+		}
+	}*/
 	
 	/**
 	 * Updates the visuals of the gamefield.
@@ -129,12 +226,13 @@ public class GameField extends JPanel {
 		//Paints the Pies
 		for(graphicalPie gp : gPies.values()){
 			gp.button.repaint();
+			System.out.println("s");
 		}
 		
 		//draws the borders differentiating the pie areas
 		/*g.setColor(Color.black);
 		for(int i=0; i<size-1; i++){
-			for(int j=0; j>size-1; j++){
+			for(int j=0; j<size-1; j++){
 				Pie currentPie = map[i][j];
 				if(currentPie != map[i+1][j]){
 					g.drawLine((i+1)*pieSize, j*pieSize, (i+1)*pieSize, (j+1)*pieSize);

@@ -10,7 +10,18 @@ class ExplosionManager{
 	}
 
 	public static void go(){
-		for(int i=0; i<4; i++){
+		while(exploding.size() > 0){
+			for(int i=0; i<4; i++){
+				try {
+					Thread.currentThread();
+					Thread.sleep(500);
+					Game.home.repaint();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			exploding.getFirst().explode(exploding.removeFirst().getOwner());
 		}
 	}
 }
