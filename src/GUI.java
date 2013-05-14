@@ -32,7 +32,7 @@ public class GUI extends JFrame{
 		super("Bammi");
 		
 		int size = DFLT_SIZE; //
-		ArrayList<Player> players = new ArrayList<Player>();
+		players = new ArrayList<Player>();
 		players.add(new User(Color.BLUE));
 		players.add(new User(Color.RED));
 		Game.setPlayers(players);
@@ -152,6 +152,7 @@ public class GUI extends JFrame{
 				settings_remPlayer();
 			}
 		});
+		settings.add(remplayer);
 		
 		JMenuItem size = new JMenuItem("Map size");
 		size.addActionListener(new ActionListener(){
@@ -176,6 +177,11 @@ public class GUI extends JFrame{
 	 * Displays a dialog for entering the new player.
 	 */
 	private void settings_addPlayer(){
+		int size = colors.length;
+		for(Color c : colors){
+			if(c == null) size--;
+		}
+		Color[] options = new Color[size];
 		Color chosenColor = colors[JOptionPane.showOptionDialog(this, "Please select a color other than null:", "New player" , JOptionPane.PLAIN_MESSAGE, JOptionPane.DEFAULT_OPTION, null, colors, colors[0])];
 		if(chosenColor != null) players.add(new User(chosenColor));
 	}
@@ -188,8 +194,8 @@ public class GUI extends JFrame{
 			i++;
 		}
 		Color chosenColor = c[JOptionPane.showOptionDialog(this, "Please select a player to remove:", "Remove player" , JOptionPane.PLAIN_MESSAGE, JOptionPane.DEFAULT_OPTION, null, c, c[0])];
-		for(Player p : players){
-			if(p.getColor() == chosenColor) players.remove(p);
+		for(i = 0; i<players.size(); i++){
+			if(players.get(i).getColor() == chosenColor) players.remove(i);
 		}
 		
 		//place color back as choosable
