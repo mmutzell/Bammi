@@ -8,7 +8,7 @@ import javax.swing.*;
  * A graphical user interface for Bammi. The main window
  * that the user interacts with during use.
  * 
- * @authors Martin Mützell, Sean Wenström
+ * @authors Martin MÃ¼tzell, Sean WenstrÃ¶m
  * @version 2013-05-13
  */
 public class GUI extends JFrame{
@@ -48,12 +48,12 @@ public class GUI extends JFrame{
 		gameField = new GameField(Init.generate(size, this), size, PIE_SIZE);
 		pane.add(gameField, BorderLayout.CENTER);
 		score = new JLabel[players.size()];
-		for(int i=0; i<score.length; i++){
-			score[i] = new JLabel();
-			score[i].setBackground(Color.white);
-			pane.add(score[i], BorderLayout.SOUTH);
+		for(int j=0; j<score.length; j++){
+			score[j] = new JLabel();
+			score[j].setBackground(Color.white);
+			pane.add(score[j], BorderLayout.SOUTH);
+			updateText();
 		}
-		updateText();
 		pack();
 		setVisible(true);
 	}
@@ -127,6 +127,16 @@ public class GUI extends JFrame{
 		pane.remove(gameField);
 		gameField = new GameField(Init.generate(size, this), size, PIE_SIZE);
 		pane.add(gameField);
+		for(JLabel s : score){
+			pane.remove(s);
+		}
+		score = new JLabel[players.size()];
+		for(int j=0; j<score.length; j++){
+			score[j] = new JLabel();
+			score[j].setBackground(Color.white);
+			pane.add(score[j], BorderLayout.SOUTH);
+			updateText();
+		}
 		setVisible(true);
 	}
 	 
@@ -277,5 +287,8 @@ public class GUI extends JFrame{
 		super.repaint();
 		updateText();
 	}
-	
+
+	public GameField getGameField(){
+		return gameField;
+	}
 }

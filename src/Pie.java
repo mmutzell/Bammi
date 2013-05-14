@@ -10,6 +10,7 @@ class Pie{
 	private int maxSlices; //Neighbors.length
 	private int currentSlices;
 	private Player owner; //Pointer
+	private boolean exploding;
 
 	public Pie(GUI home){
 		this.home = home;  //Pointer
@@ -17,12 +18,19 @@ class Pie{
 		maxSlices = 0;
 		currentSlices = 0;
 		owner = null;
+		exploding = false;
 	}
 
 	public void addSlice(Player player){
 		if(owner == null || owner == player){
 			Game.nextPlayer();
-			add(player);
+			if(currentSlices == maxSlices){
+				add(player);
+				ExplosionManager.go();
+			}
+			else{
+				add(player);
+			}
 		}
 	}
 	
@@ -37,7 +45,7 @@ class Pie{
 			owner = player;
 		}
 		currentSlices++;
-		if(currentSlices > maxSlices) explode(player);
+		if(currentSlices > maxSlices) lightFuse(player);
 		home.repaint();
 	}
 	
@@ -61,11 +69,19 @@ class Pie{
 		return currentSlices;
 	}
 
-	private void explode(Player player){
+	private void lightFuse(Player player){
 		currentSlices = 1;
+		owner = player;
+		exploding = true;
+		ExplosionManager.add(this);
+	}
+
+	public void explode(Player player){
 		for(Pie neighbor :neighbors){
 			neighbor.add(player);
 		}
 		//TODO: graphics
+		exploding = currentSlices > maxSlices;
+		ExplosionManager.go();
 	}
 }

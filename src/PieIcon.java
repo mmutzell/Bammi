@@ -12,10 +12,12 @@ public class PieIcon implements Icon {
 	
 	private Pie pie;
 	private Rectangle bounds;
+	private boolean flash;
 	
 	public PieIcon(Pie p, int size){
 		pie = p;
 		bounds = new Rectangle(size-1, size-1);
+		flash = true;
 	}
 
 	@Override
