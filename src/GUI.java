@@ -182,7 +182,14 @@ public class GUI extends JFrame{
 			if(c == null) size--;
 		}
 		Color[] options = new Color[size];
-		Color chosenColor = colors[JOptionPane.showOptionDialog(this, "Please select a color other than null:", "New player" , JOptionPane.PLAIN_MESSAGE, JOptionPane.DEFAULT_OPTION, null, colors, colors[0])];
+		int actualIndex = 0;
+		for(Color c : colors){
+			if(c != null){
+				options[actualIndex] = c;
+				actualIndex++;
+			}
+		}
+		Color chosenColor = options[JOptionPane.showOptionDialog(this, "Please select a color other than null:", "New player" , JOptionPane.PLAIN_MESSAGE, JOptionPane.DEFAULT_OPTION, null, options, options[0])];
 		if(chosenColor != null) players.add(new User(chosenColor));
 		
 		Game.newGame(players);
