@@ -14,6 +14,10 @@ interface Player{
 	public int getNumberOfPies();
 	
 	public Color getColor();
+	
+	public boolean hasLost();
+	
+	public void checkLoss();
 
 	public void act();	
 }

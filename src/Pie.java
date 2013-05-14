@@ -40,8 +40,9 @@ class Pie{
 			owner = player;
 		}
 		else if(owner != player){ //triggered by explosion
-			player.addPie();
 			owner.removePie();
+			owner.checkLoss();
+			player.addPie();
 			owner = player;
 		}
 		currentSlices++;

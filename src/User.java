@@ -4,10 +4,12 @@ class User implements Player{
 	
 	Color color;
 	int numberOfPies;
+	boolean hasLost;
 
 	public User(Color color){
 		this.color = color;
 		numberOfPies = 0;
+		hasLost = false;
 	}
 
 	public int getNumberOfPies(){
@@ -27,6 +29,19 @@ class User implements Player{
 	}
 
 	public void act(){
-	//wait for graphical interaction
+		//wait for graphical interaction
+	}
+	
+	public boolean hasLost(){
+		return hasLost;
+	}
+	
+	public void checkLoss(){
+		if(Game.getUnownedPies() == 0 && this.getNumberOfPies() == 0) lose();
+		Game.checkGameEnd();
+	}
+	
+	private void lose(){
+		hasLost = true;
 	}
 }
