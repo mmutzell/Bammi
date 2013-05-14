@@ -1,4 +1,5 @@
 import java.awt.BasicStroke;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -57,6 +58,33 @@ public class GameField extends JPanel {
 		}
 	}
 	
+	private class gridBox extends JPanel{
+		public gridBox(boolean top, boolean bot, boolean left, boolean right){
+			super();
+			setLayout(new BorderLayout());
+			if(top){
+				JSeparator sep = new JSeparator();
+				sep.setPreferredSize(new Dimension((int) this.getPreferredSize().getWidth(), 1));
+				add(sep, BorderLayout.PAGE_START);
+			}
+			if(bot){
+				JSeparator sep = new JSeparator();
+				sep.setPreferredSize(new Dimension((int) this.getPreferredSize().getWidth(), 1));
+				add(sep, BorderLayout.PAGE_END);
+			}
+			if(left){
+				JSeparator sep = new JSeparator(SwingConstants.VERTICAL);
+				sep.setPreferredSize(new Dimension(1, (int) this.getPreferredSize().getHeight()));
+				add(sep, BorderLayout.LINE_START);
+			}
+			if(right){
+				JSeparator sep = new JSeparator(SwingConstants.VERTICAL);
+				sep.setPreferredSize(new Dimension(1, (int) this.getPreferredSize().getHeight()));
+				add(sep, BorderLayout.LINE_END);
+			}
+		}
+	}
+	
 	/**
 	 * Creates a new GameField.
 	 * @param map
@@ -82,7 +110,25 @@ public class GameField extends JPanel {
 				c.gridy = j*2+1;
 				c.fill = GridBagConstraints.BOTH;
 				Pie currentPie = map[i][j];
-				grid[i][j] = new JPanel();
+				
+				boolean top = false;
+				boolean bot = false;
+				boolean left = false;
+				boolean right = false;
+				if(j==0 || map[i][j]!=map[i][j-1]){
+					top = true;
+				}
+				if(j==size-1 || map[i][j]!=map[i][j+1]){
+					bot = true;
+				}
+				if(i==0 || map[i][j]!=map[i-1][j]){
+					left = true;
+				}
+				if(i==size-1 || map[i][j]!=map[i+1][j]){
+					right = true;
+				}
+				
+				grid[i][j] = new gridBox(top, bot, left, right);
 				grid[i][j].setPreferredSize(new Dimension(pieSize, pieSize));
 				add(grid[i][j], c);
 				if(!pieAreas.containsKey(currentPie)){
