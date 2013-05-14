@@ -12,12 +12,10 @@ public class PieIcon implements Icon {
 	
 	private Pie pie;
 	private Rectangle bounds;
-	private boolean flash;
 	
 	public PieIcon(Pie p, int size){
 		pie = p;
 		bounds = new Rectangle(size-1, size-1);
-		flash = false;
 	}
 
 	@Override
@@ -40,18 +38,16 @@ public class PieIcon implements Icon {
 		else{
 			g.setColor(Color.white);
 		}
+		
+		if(pie.exploding()){
+			g.setColor(new Color(222, 49, 99));
+			g.fillOval(0, 0, bounds.height, bounds. width);
+			return;
+		}
+		
 		g.fill(bounds);
 		g.setColor(Color.white);
 		g.fillOval(0, 0, bounds.height, bounds.width);
-		
-		if(pie.exploding()){
-			System.out.println("df");
-			flash = !flash;
-			if(flash){
-				return;
-			}
-		}
-		
 		int space = pie.maxSlices();
 		int painted = pie.currentSlices();
 		float degree = (float) (360/space);

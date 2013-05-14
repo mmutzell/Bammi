@@ -6,9 +6,9 @@ import javax.swing.Timer;
 
 class ExplosionManager{
 	
-	private static int flashes = 0;
+	//private static int flashes = 0;
 	private static LinkedList<Pie> exploding = new LinkedList<Pie>();
-	private static Timer t = new Timer(200, new ActionListener() {
+	private static Timer t = new Timer(1000, new ActionListener() {
 		public void actionPerformed(ActionEvent e){
 			flash();
 		}
@@ -23,7 +23,7 @@ class ExplosionManager{
 	}
 	
 	private static void flash(){
-		if(flashes < 4){
+		/*if(flashes < 4){
 			Game.home.repaint();
 			flashes++;
 		}
@@ -31,10 +31,14 @@ class ExplosionManager{
 			t.stop();
 			exploding.getFirst().explode(exploding.removeFirst().getOwner());
 			flashes = 0;
-		}
+		}*/
+		t.stop();
+		exploding.getFirst().explode(exploding.removeFirst().getOwner());
+		
 	}
 
 	public static void go(){
+		Game.home.repaint();
 		t.start();
 	}
 	
