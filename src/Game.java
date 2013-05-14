@@ -27,7 +27,7 @@ public class Game {
 	public static void newGame(ArrayList<Player> p){
 		players = p;
 		playerIndex = 0;
-		
+		home.newGame();
 	}
 
 	public static Player getCurrentPlayer(){
