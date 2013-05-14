@@ -23,6 +23,7 @@ class ExplosionManager{
 	}
 	
 	private static void flash(){
+		if(exploding.isEmpty()) return;
 		/*if(flashes < 4){
 			Game.home.repaint();
 			flashes++;
