@@ -26,6 +26,7 @@ public class Game {
 //	public Game(Player[] p, )
 	
 	public static void newGame(){
+		unownedPies = 0;
 		playerIndex = 0;
 		home.newGame();
 		for(Player p : players){
@@ -40,7 +41,9 @@ public class Game {
 	
 	public static void nextPlayer(){
 		if(++playerIndex == players.size()) playerIndex = 0;
+		getCurrentPlayer().checkLoss();
 		if(getCurrentPlayer().hasLost()) nextPlayer();
+		System.err.println("Unowned pies: "+unownedPies);
 	}
 	
 	/**

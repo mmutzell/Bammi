@@ -37,8 +37,10 @@ class User implements Player{
 	}
 	
 	public void checkLoss(){
-		if(Game.getUnownedPies() == 0 && this.getNumberOfPies() == 0) lose();
-		Game.checkGameEnd();
+		if(Game.getUnownedPies() == 0 && this.getNumberOfPies() == 0){
+			lose();
+			Game.checkGameEnd();
+		}
 	}
 	
 	public void unlose(){

@@ -34,13 +34,8 @@ class ExplosionManager{
 		//a dummy list with a dummy pie.
 		exploding = new LinkedList<Pie>(){
 			@Override
-			public Pie removeFirst(){
-				return getFirst();
-			}
-		};
-		Pie pie = new Pie(Game.home){
-			@Override
-			public void explode(Player p){
+			public int size(){
+				return 0;
 			}
 		};
 		
