@@ -27,7 +27,6 @@ class Pie{
 	}
 	
 	private void add(Player player){
-		
 		if(owner == null){
 			player.addPie();
 			owner = player;
