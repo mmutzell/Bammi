@@ -17,6 +17,15 @@ class ExplosionManager{
 	public void stopTimer(){
 		t.stop();
 	}
+	
+	public static boolean isEmpty(){
+		if(exploding.size() == 0){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
 
 	public static void add(Pie p){
 		exploding.add(p);
@@ -24,7 +33,6 @@ class ExplosionManager{
 	
 	private static void flash(){
 		if(exploding.isEmpty()){
-			Game.home.getGameField().exploding();
 			return;
 		}
 		/*if(flashes < 4){
@@ -43,7 +51,6 @@ class ExplosionManager{
 
 	public static void go(){
 		Game.home.repaint();
-		Game.home.getGameField().exploding();
 		t.start();
 	}
 	
