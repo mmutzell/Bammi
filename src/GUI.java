@@ -13,8 +13,8 @@ import javax.swing.*;
  */
 public class GUI extends JFrame{
 	
-	private static final int PIE_SIZE = 30; //pieSize to send to gameField
-	private static final int DFLT_SIZE = 10; //default size of map
+	private static final int PIE_SIZE = 60; //pieSize to send to gameField
+	private static final int DFLT_SIZE = 15; //default size of map
 	
 	private JPanel panel;
 	private GameField gameField;
@@ -22,7 +22,7 @@ public class GUI extends JFrame{
 	private ArrayList<Player> players;
 	private Color[] colors = new Color[] {null, null, Color.GREEN, Color.YELLOW, Color.BLACK};
 	
-	private int gamefieldSize;
+	private int size;
 	
 	
 	/**
@@ -30,8 +30,8 @@ public class GUI extends JFrame{
 	 */
 	public GUI() {
 		super("Bammi");
-		
-		int size = DFLT_SIZE; //
+		 
+		size = DFLT_SIZE; //
 		players = new ArrayList<Player>();
 		players.add(new User(Color.BLUE));
 		players.add(new User(Color.RED));
@@ -106,8 +106,11 @@ public class GUI extends JFrame{
 	/**
 	 * Starts a new game.
 	 */
-	private void newGame(){
-	//	GameField = new GameField();
+	public void newGame(){
+		panel.remove(gameField);
+		gameField = new GameField(Init.generate(size, this), size, PIE_SIZE);
+		panel.add(gameField);
+		setVisible(true);
 	}
 	 
 	 
