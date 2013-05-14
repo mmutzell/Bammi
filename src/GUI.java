@@ -176,7 +176,7 @@ public class GUI extends JFrame{
 	 * Displays a dialog for entering the new player.
 	 */
 	private void settings_addPlayer(){
-		Color chosenColor = (Color) JOptionPane.showOptionDialog(this, "Please select a color other than null:", "New player" , JOptionPane.PLAIN_MESSAGE, null, colors, colors[0]);
+		Color chosenColor = (Color) JOptionPane.showOptionDialog(this, "Please select a color other than null:", "New player" , JOptionPane.PLAIN_MESSAGE, JOptionPane.DEFAULT_OPTION, null, colors, colors[0]);
 		if(chosenColor != null) players.add(new User(chosenColor));
 	}
 	
@@ -187,7 +187,7 @@ public class GUI extends JFrame{
 			c[i] = p.getColor();
 			i++;
 		}
-		Color chosenColor = (Color) JOptionPane.showOptionDialog(this, "Please select a player to remove:", "Remove player" , JOptionPane.PLAIN_MESSAGE, null, c, c[0]);
+		Color chosenColor = (Color) JOptionPane.showOptionDialog(this, "Please select a player to remove:", "Remove player" , JOptionPane.PLAIN_MESSAGE, JOptionPane.DEFAULT_OPTION, null, c, c[0]);
 		for(Player p : players){
 			if(p.getColor() == chosenColor) players.remove(p);
 		}
