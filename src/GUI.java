@@ -48,13 +48,13 @@ public class GUI extends JFrame{
 		gameField = new GameField(Init.generate(size, this), size, PIE_SIZE);
 		pane.add(gameField, BorderLayout.CENTER);
 		score = new JLabel[players.size()];
-		System.out.println(players.size()+" "+score.length);
 		for(int i=0; i<score.length; i++){
 			score[i] = new JLabel();
+			System.out.println("s");
 			score[i].setBackground(Color.white);
 			pane.add(score[i], BorderLayout.SOUTH);
-			updateText();
 		}
+		updateText();
 		pack();
 		setVisible(true);
 	}
