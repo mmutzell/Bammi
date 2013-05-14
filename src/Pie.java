@@ -21,6 +21,7 @@ class Pie{
 
 	public void addSlice(Player player){
 		if(owner == null || owner == player){
+			Game.nextPlayer();
 			add(player);
 		}
 	}
