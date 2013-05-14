@@ -30,7 +30,7 @@ public class Game {
 	}
 
 	public static Player getCurrentPlayer(){
-		return players.get(1);
+		return players.get(playerIndex);
 	}
 	
 	public static void nextPlayer(){

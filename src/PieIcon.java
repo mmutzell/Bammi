@@ -34,7 +34,7 @@ public class PieIcon implements Icon {
 		int space = pie.maxSlices();
 		int painted = pie.currentSlices();
 		boolean hasOwner = pie.getOwner() != null;
-		float degree = (float) (Math.PI*2/space);
+		float degree = (float) (360/space);
 		for(int i=0; i<space; i++){
 			Arc2D.Float slice = new Arc2D.Float(bounds, (float)(i*degree+Math.PI/2), (float)((i+1)*degree+Math.PI/2), Arc2D.PIE);
 			if(hasOwner && painted>0){
