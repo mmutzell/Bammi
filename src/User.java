@@ -41,6 +41,10 @@ class User implements Player{
 		Game.checkGameEnd();
 	}
 	
+	public void unlose(){
+		hasLost = false;
+	}
+	
 	private void lose(){
 		hasLost = true;
 	}

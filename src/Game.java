@@ -28,6 +28,10 @@ public class Game {
 	public static void newGame(){
 		playerIndex = 0;
 		home.newGame();
+		for(Player p : players){
+			p.unlose();
+		}
+		ExplosionManager.reset();
 	}
 
 	public static Player getCurrentPlayer(){
@@ -50,6 +54,11 @@ public class Game {
 		unownedPies++;
 	}
 	
+	public static void removeUnownedPie(){
+		unownedPies--;
+	}
+	
+	
 	public static int getUnownedPies(){
 		return unownedPies;
 	}
@@ -66,6 +75,7 @@ public class Game {
 	}
 	
 	private static void win(Player p){
+		ExplosionManager.flush();
 		String message = "";
 		if(p == null) message = "There is no winner...";
 		else message = p.getColor()+" wins!";

@@ -25,8 +25,10 @@ public class Init {
 					finalGrid[x][y] = finalGrid[x-1][y];
 				else if(y != 0 && baseGrid[x][y-1] == baseGrid[x][y])
 					finalGrid[x][y] = finalGrid[x][y-1];
-				else
+				else{
 					finalGrid[x][y] = new Pie(home);
+					Game.addUnownedPie();
+				}
 			}
 		}
 		
