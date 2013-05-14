@@ -24,7 +24,7 @@ import javax.swing.SwingConstants;
  * Bammi.
  * @author Martin Mützell
  */
-public class GameField extends JLayeredPane {
+public class GameField extends JPanel {
 
 	private Pie[][] map;
 	private JPanel[][] grid;
@@ -65,6 +65,7 @@ public class GameField extends JLayeredPane {
 	 */
 	public GameField(final Pie[][] map, final int size, final int pieSize){
 		super();
+		setOpaque(false);
 		setLayout(new GridBagLayout());
 		setSize(new Dimension(size*pieSize, size*pieSize));
 		setBackground(Color.white);
@@ -84,7 +85,6 @@ public class GameField extends JLayeredPane {
 				grid[i][j] = new JPanel();
 				grid[i][j].setPreferredSize(new Dimension(pieSize, pieSize));
 				add(grid[i][j], c);
-				setLayer(grid[i][j], 0);
 				if(!pieAreas.containsKey(currentPie)){
 					pieAreas.put(currentPie, new ArrayList<coordinate>());
 				}
@@ -112,7 +112,7 @@ public class GameField extends JLayeredPane {
 			grid[gp.coordinate.x][gp.coordinate.y].add(gp.button);
 		}
 		
-		borders = new JPanel(){
+		/*borders = new JPanel(){
 			protected void paintComponent(Graphics g){
 				g.setColor(Color.black);
 				((Graphics2D) g).setStroke(new BasicStroke(1));
@@ -133,7 +133,7 @@ public class GameField extends JLayeredPane {
 		borders.setPreferredSize(new Dimension(size*pieSize, size*pieSize));
 		borders.setOpaque(false);
 		add(borders);
-		setLayer(borders, 100);
+		setLayer(borders, 100);*/
 		
 		/*for(int i=0; i<size; i++){
 			GridBagConstraints c = new GridBagConstraints();
