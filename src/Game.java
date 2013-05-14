@@ -1,7 +1,9 @@
+import java.util.ArrayList;
+
 
 public class Game {
 	
-	private static Player[] players;
+	private static ArrayList<Player> players;
 	private static int playerIndex = 0;
 	private static GUI home;
 //	private static Pie[][] map;
@@ -22,24 +24,24 @@ public class Game {
 	
 //	public Game(Player[] p, )
 	
-	public static void newGame(Player[] players){
-		this.players = players;
+	public static void newGame(ArrayList<Player> p){
+		players = p;
 		playerIndex = 0;
 	}
 
 	public static Player getCurrentPlayer(){
-		return null;
+		return players.get(1);
 	}
 	
 	public static void nextPlayer(){
-		if(++playerIndex == players.length) playerIndex = 0;
+		if(++playerIndex == players.size()) playerIndex = 0;
 	}
 	
 	/**
 	 * ALWAYS RUN AT START
 	 */
-	public static void setPlayers(Player[] players){
-		this.players = players;
+	public static void setPlayers(ArrayList<Player> p){
+		players = p;
 	}
 	
 }
