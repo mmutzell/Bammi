@@ -35,6 +35,9 @@ public class Game {
 	
 	public static void nextPlayer(){
 		if(++playerIndex == players.size()) playerIndex = 0;
+		if(getCurrentPlayer().getNumberOfPies() == 0){
+			
+		}
 	}
 	
 	/**
