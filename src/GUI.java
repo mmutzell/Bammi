@@ -48,10 +48,11 @@ public class GUI extends JFrame{
 		gameField = new GameField(Init.generate(size, this), size, PIE_SIZE);
 		pane.add(gameField, BorderLayout.CENTER);
 		score = new JLabel[players.size()];
-		for(int j=0; j<score.length; j++){
-			score[j] = new JLabel();
-			score[j].setBackground(Color.white);
-			pane.add(score[j], BorderLayout.SOUTH);
+		System.out.println(players.size()+" "+score.length);
+		for(int i=0; i<score.length; i++){
+			score[i] = new JLabel();
+			score[i].setBackground(Color.white);
+			pane.add(score[i], BorderLayout.SOUTH);
 			updateText();
 		}
 		pack();
@@ -114,10 +115,11 @@ public class GUI extends JFrame{
 	
 	public void updateText(){
 		turn.setForeground(Game.getCurrentPlayer().getColor());
-		for(int i=0; i<score.length; i++){
+		int size = score.length;
+		for(int i=0; i<size; i++){
 			score[i].setForeground(players.get(i).getColor());
 			score[i].setText(((Integer)(players.get(i).getNumberOfPies())).toString());
-			}
+		}
 	}
 	
 	/**
