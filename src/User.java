@@ -45,6 +45,7 @@ class User implements Player{
 	
 	public void unlose(){
 		hasLost = false;
+		numberOfPies = 0;
 	}
 	
 	private void lose(){
