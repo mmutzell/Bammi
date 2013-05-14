@@ -81,7 +81,7 @@ public class GUI extends JFrame{
 		JMenuItem newGame = new JMenuItem("New game");
 		newGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
-				newGame();
+				Game.newGame();
 			}
 		});
 		gameMenu.add(newGame);
@@ -240,8 +240,20 @@ public class GUI extends JFrame{
 				actualIndex++;
 			}
 		}
+		if(options.length == 0){
+			JOptionPane.showMessageDialog(this, "No more players left to add.");
+			return;
+		}
 		Color chosenColor = options[JOptionPane.showOptionDialog(this, "Please select a color:", "New player" , JOptionPane.PLAIN_MESSAGE, JOptionPane.DEFAULT_OPTION, null, options, options[0])];
 		if(chosenColor != null) players.add(new User(chosenColor));
+		//nullify chosen color in main array
+		for(int i = 0; i < colors.length; i++){
+			if(colors[i] == chosenColor){
+				colors[i] = null;
+				break;
+			}
+		}
+		
 		
 		for(JLabel s : score){
 			pane.remove(s);
@@ -263,6 +275,12 @@ public class GUI extends JFrame{
 			c[i] = p.getColor();
 			i++;
 		}
+		
+		if(players.size() == 1){
+			JOptionPane.showMessageDialog(this, "You cannot remove the last player.\nPlease add another player first.");
+			return;
+		}
+		
 		Color chosenColor = c[JOptionPane.showOptionDialog(this, "Please select a player to remove:", "Remove player" , JOptionPane.PLAIN_MESSAGE, JOptionPane.DEFAULT_OPTION, null, c, c[0])];
 		for(i = 0; i<players.size(); i++){
 			if(players.get(i).getColor() == chosenColor) players.remove(i);

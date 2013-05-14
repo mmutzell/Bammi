@@ -5,7 +5,7 @@ public class Init {
 	//kontrollerar vilka siffror som hamnar i den genererade basemapen
 	//större tal ger fler celler, decimaltal ökar sannolikheten för 
 	//enstaka, mycket små celler.
-	private static final double BASEMAP_NUMBER_RANGE = 2.5;
+	private static final double BASEMAP_NUMBER_RANGE = 4.5;
 	
 	/**
 	 * Genererar ett rutnät med referenser till de pajer

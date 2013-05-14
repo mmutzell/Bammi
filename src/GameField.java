@@ -235,7 +235,7 @@ public class GameField extends JPanel {
 			for(int j=0; j<size-1; j++){
 				Pie currentPie = map[i][j];
 				if(currentPie != map[i+1][j]){
-					g.drawLine((i+1)*pieSize, j*pieSize, (i+1)*pieSize, (j+1)*pieSize);
+					g.drawLine((i+1)*pieSize-200, j*pieSize-200, (i+1)*pieSize-200, (j+1)*pieSize-200);
 				}
 				if(currentPie != map[i][j+1]){
 					g.drawLine(i*pieSize, (j+1)*pieSize, (i+1)*pieSize, (j+1)*pieSize);
