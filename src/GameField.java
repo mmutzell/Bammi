@@ -272,7 +272,6 @@ public class GameField extends JPanel {
 		//Paints the Pies
 		for(graphicalPie gp : gPies.values()){
 			gp.button.repaint();
-			System.out.println("s");
 		}
 		
 		//draws the borders differentiating the pie areas
