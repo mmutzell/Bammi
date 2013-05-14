@@ -18,6 +18,8 @@ interface Player{
 	public boolean hasLost();
 	
 	public void checkLoss();
+	
+	public void unlose();
 
 	public void act();	
 }

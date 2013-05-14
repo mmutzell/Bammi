@@ -37,6 +37,7 @@ class Pie{
 	private void add(Player player){
 		if(owner == null){
 			player.addPie();
+			Game.removeUnownedPie();
 			owner = player;
 		}
 		else if(owner != player){ //triggered by explosion
