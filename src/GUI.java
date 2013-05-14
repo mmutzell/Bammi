@@ -137,8 +137,8 @@ public class GUI extends JFrame{
 			score[j] = new JLabel();
 			score[j].setBackground(Color.white);
 			pane.add(score[j], BorderLayout.SOUTH);
-			updateText();
 		}
+		updateText();
 		setVisible(true);
 	}
 	 
