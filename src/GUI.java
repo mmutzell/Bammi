@@ -16,8 +16,10 @@ public class GUI extends JFrame{
 	private static final int PIE_SIZE = 60; //pieSize to send to gameField
 	private static final int DFLT_SIZE = 10; //default size of map
 	
-	private JPanel panel;
+	private Container pane;
 	private GameField gameField;
+	private JLabel turn;
+	private JLabel[] score;
 	
 	private ArrayList<Player> players;
 	private Color[] colors = new Color[] {null, null, Color.GREEN, Color.YELLOW, Color.BLACK};
@@ -36,14 +38,22 @@ public class GUI extends JFrame{
 		players.add(new User(Color.BLUE));
 		players.add(new User(Color.RED));
 		Game.setPlayers(players);
-		
-		
+				
 		makeMenuBar();
-		panel = new JPanel();
+		pane = getContentPane();
+		turn = new JLabel();
+		turn.setBackground(Color.white);
+		turn.setText("Take over all Pies!");
+		pane.add(turn, BorderLayout.NORTH);
 		gameField = new GameField(Init.generate(size, this), size, PIE_SIZE);
-		panel.add(gameField);
-		panel.add(new Label("test"));
-		getContentPane().add(panel);
+		pane.add(gameField, BorderLayout.CENTER);
+		score = new JLabel[players.size()];
+		for(int i=0; i<score.length; i++){
+			score[i] = new JLabel();
+			score[i].setBackground(Color.white);
+			pane.add(score[i], BorderLayout.SOUTH);
+		}
+		updateText();
 		pack();
 		setVisible(true);
 	}
@@ -102,14 +112,21 @@ public class GUI extends JFrame{
 		helpMenu.add(aboutBammi);
 	}
 	
+	public void updateText(){
+		turn.setForeground(Game.getCurrentPlayer().getColor());
+		for(int i=0; i<score.length; i++){
+			score[i].setForeground(players.get(i).getColor());
+			score[i].setText(((Integer)(players.get(i).getNumberOfPies())).toString());
+			}
+	}
 	
 	/**
 	 * Starts a new game.
 	 */
 	public void newGame(){
-		panel.remove(gameField);
+		pane.remove(gameField);
 		gameField = new GameField(Init.generate(size, this), size, PIE_SIZE);
-		panel.add(gameField);
+		pane.add(gameField);
 		setVisible(true);
 	}
 	 
@@ -195,6 +212,17 @@ public class GUI extends JFrame{
 		Color chosenColor = options[JOptionPane.showOptionDialog(this, "Please select a color other than null:", "New player" , JOptionPane.PLAIN_MESSAGE, JOptionPane.DEFAULT_OPTION, null, options, options[0])];
 		if(chosenColor != null) players.add(new User(chosenColor));
 		
+		for(JLabel s : score){
+			pane.remove(s);
+		}
+		score = new JLabel[players.size()];
+		for(int i=0; i<score.length; i++){
+			score[i] = new JLabel();
+			score[i].setBackground(Color.white);
+			pane.add(score[i], BorderLayout.SOUTH);
+		}
+		updateText();
+		
 		Game.newGame(players);
 	}
 	
@@ -217,9 +245,26 @@ public class GUI extends JFrame{
 				break;
 			}
 		}
+
+		for(JLabel s : score){
+			pane.remove(s);
+		}
+		score = new JLabel[players.size()];
+		for(int j=0; j<score.length; j++){
+			score[j] = new JLabel();
+			score[j].setBackground(Color.white);
+			pane.add(score[j], BorderLayout.SOUTH);
+		}
+		updateText();
 		
 		Game.newGame(players);
 		
+	}
+	
+	@Override
+	public void repaint(){
+		super.repaint();
+		updateText();
 	}
 	
 }

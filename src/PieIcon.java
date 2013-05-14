@@ -15,7 +15,7 @@ public class PieIcon implements Icon {
 	
 	public PieIcon(Pie p, int size){
 		pie = p;
-		bounds = new Rectangle(size, size);
+		bounds = new Rectangle(size-1, size-1);
 	}
 
 	@Override
@@ -31,14 +31,19 @@ public class PieIcon implements Icon {
 	@Override
 	public void paintIcon(Component c, Graphics gs, int x, int y) {
 		Graphics2D g = (Graphics2D) (gs);
-		g.setColor(Color.white);
+		boolean hasOwner = pie.getOwner() != null;
+		if(hasOwner){
+			g.setColor(pie.getOwner().getColor());
+		}
+		else{
+			g.setColor(Color.white);
+		}
 		g.fill(bounds);
 		int space = pie.maxSlices();
 		int painted = pie.currentSlices();
-		boolean hasOwner = pie.getOwner() != null;
 		float degree = (float) (360/space);
 		for(int i=0; i<space; i++){
-			Arc2D.Float slice = new Arc2D.Float(bounds, (float)(i*degree+Math.PI/2), (float)((i+1)*degree+Math.PI/2), Arc2D.PIE);
+			Arc2D.Float slice = new Arc2D.Float(bounds, (float)(i*degree+Math.PI/2), (float)((i+1)*degree+90), Arc2D.PIE);
 			if(hasOwner && painted>0){
 				g.setColor(pie.getOwner().getColor());
 				g.fill(slice);
