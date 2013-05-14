@@ -31,6 +31,7 @@ class Pie{
 				add(player);
 			}
 			Game.nextPlayer();
+			Game.home.repaint();
 		}
 	}
 	
