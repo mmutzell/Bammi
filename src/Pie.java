@@ -42,7 +42,7 @@ class Pie{
 				owner = player;
 			}
 		}
-		//TODO: graphics
+		home.repaint();
 	}
 	
 	public void addNeighbor(Pie p){

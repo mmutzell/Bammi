@@ -31,6 +31,8 @@ public class PieIcon implements Icon {
 	@Override
 	public void paintIcon(Component c, Graphics gs, int x, int y) {
 		Graphics2D g = (Graphics2D) (gs);
+		g.setColor(Color.white);
+		g.fill(bounds);
 		int space = pie.maxSlices();
 		int painted = pie.currentSlices();
 		boolean hasOwner = pie.getOwner() != null;
