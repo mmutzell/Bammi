@@ -122,7 +122,7 @@ public class GameField extends JPanel {
 					grid[i][j].setBackground(Color.white);
 				}
 				else{
-					grid[i][j].setBackground(map[i][j].getOwner().getColor().darker());
+					grid[i][j].setBackground(map[i][j].getOwner().getColor());
 				}
 			}
 		}
