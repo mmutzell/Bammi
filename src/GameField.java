@@ -1,9 +1,12 @@
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -60,6 +63,7 @@ public class GameField extends JPanel {
 		super();
 		setLayout(new GridBagLayout());
 		setSize(new Dimension(size*pieSize, size*pieSize));
+		setBackground(Color.white);
 		this.map = map;
 		this.size = size;
 		this.pieSize = pieSize;
@@ -71,6 +75,7 @@ public class GameField extends JPanel {
 				GridBagConstraints c = new GridBagConstraints();
 				c.gridx = i;
 				c.gridy = j;
+				//c.insets = new Insets(1, 1, 1, 1);
 				Pie currentPie = map[i][j];
 				grid[i][j] = new JPanel();
 				grid[i][j].setPreferredSize(new Dimension(pieSize, pieSize));
@@ -102,7 +107,8 @@ public class GameField extends JPanel {
 	 * Updates the visuals of the gamefield.
 	 */
 	@Override
-	protected void paintComponent(Graphics g){
+	protected void paintComponent(Graphics gr){
+		Graphics2D g = (Graphics2D) (gr);
 		super.paintComponent(g);
 		//colors the field accordingly to the gamestate
 		for(int i=0; i<size; i++){
