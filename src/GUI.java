@@ -19,6 +19,8 @@ public class GUI {
 	private GameField gameField;
 	
 	private ArrayList<Player> players;
+	private Color[] colors = new Color[] {null, null, Color.GREEN, Color.YELLOW, Color.BLACK};
+	
 	private int gamefieldSize;
 	
 	
@@ -131,13 +133,20 @@ public class GUI {
 	private JMenu makeSettingsMenu(){
 		JMenu settings = new JMenu("Settings");
 		
-		JMenuItem players = new JMenuItem("Number of players");
+		JMenuItem players = new JMenuItem("Add player");
 		players.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
-				settings_showNumberOfPlayers(); 
+				settings_addPlayer(); 
 			}
 		});
 		settings.add(players);
+		
+		JMenuItem remplayer = new JMenuItem("Remove player");
+		remplayer.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				settings_remPlayer();
+			}
+		});
 		
 		JMenuItem size = new JMenuItem("Map size");
 		size.addActionListener(new ActionListener(){
@@ -159,10 +168,33 @@ public class GUI {
 	}
 	
 	/**
-	 * Displays a dialog for entering the new
-	 * number of players.
+	 * Displays a dialog for entering the new player.
 	 */
-	private void settings_showNumberOfPlayers(){
-		//TODO
+	private void settings_addPlayer(){
+		Color chosenColor = (Color) JOptionPane.showOptionDialog(frame, "Please select a color other than null:", "New player" , JOptionPane.PLAIN_MESSAGE, null, colors, colors[0]);
+		if(chosenColor != null) players.add(new User(chosenColor));
 	}
+	
+	private void settings_remPlayer(){
+		Color[] c = new Color[players.size()];
+		int i = 0;
+		for(Player p : players){
+			c[i] = p.getColor();
+			i++;
+		}
+		Color chosenColor = (Color) JOptionPane.showOptionDialog(frame, "Please select a player to remove:", "Remove player" , JOptionPane.PLAIN_MESSAGE, null, c, c[0]);
+		for(Player p : players){
+			if(p.getColor() == chosenColor) players.remove(p);
+		}
+		
+		//place color back as choosable
+		for(i = 0; i < colors.length; i++){
+			if(colors[i] == null){
+				colors[i] = chosenColor;
+				break;
+			}
+		}
+		
+	}
+	
 }
