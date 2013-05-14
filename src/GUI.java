@@ -18,7 +18,11 @@ public class GUI extends JFrame{
 			"\nAdding a slice to a full pie will cause it to explode, moving one slice to each of its " +
 			"neighbours and turning them to your colour. These explosions can chain, making it possible to " +
 			"claim many pies by adding a single slice.";
-	private static final String ABOUT_BAMMI = ""; //TODO
+	private static final String ABOUT_BAMMI = "This is our implementation of Bammi, done as a programming project " +
+			"for the Introductory Course to Computer Science, DD1339, at KTH in Sweden. " +
+			"\n\nThis is based on the original implementation of Bammi, which can be found " +
+			"on \nwww.bammi.com" +
+			""; 
 	
 	private static final int PIE_SIZE = 60; //pieSize to send to gameField
 	private static final int DFLT_SIZE = 10; //default size of map
