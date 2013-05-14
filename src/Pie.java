@@ -30,8 +30,7 @@ class Pie{
 			else{
 				add(player);
 			}
-			Game.nextPlayer();
-			Game.home.repaint();
+			ifNext();
 		}
 	}
 	
@@ -50,6 +49,12 @@ class Pie{
 		currentSlices++;
 		if(currentSlices > maxSlices) lightFuse(player);
 		home.repaint();
+	}
+	
+	private void ifNext(){
+		if(ExplosionManager.isEmpty()){
+			Game.nextPlayer();
+		}
 	}
 	
 	public void addNeighbor(Pie p){
@@ -93,5 +98,6 @@ class Pie{
 		home.repaint();
 		exploding = false;
 		ExplosionManager.go();
+		ifNext();
 	}
 }
