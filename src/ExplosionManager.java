@@ -15,9 +15,8 @@ class ExplosionManager{
 			for(int i=0; i<4; i++){
 				try {
 					Thread.currentThread();
-					Thread.sleep(500);
+					Thread.sleep(100);
 					Game.home.repaint();
-					Game.home.validate();
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
