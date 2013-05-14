@@ -23,7 +23,10 @@ class ExplosionManager{
 	}
 	
 	private static void flash(){
-		if(exploding.isEmpty()) return;
+		if(exploding.isEmpty()){
+			Game.home.getGameField().exploding();
+			return;
+		}
 		/*if(flashes < 4){
 			Game.home.repaint();
 			flashes++;
@@ -40,6 +43,7 @@ class ExplosionManager{
 
 	public static void go(){
 		Game.home.repaint();
+		Game.home.getGameField().exploding();
 		t.start();
 	}
 	

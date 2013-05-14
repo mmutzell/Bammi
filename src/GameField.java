@@ -27,6 +27,7 @@ import javax.swing.SwingConstants;
  */
 public class GameField extends JPanel {
 
+	private boolean boom;
 	private Pie[][] map;
 	private JPanel[][] grid;
 	private HashMap<Pie, graphicalPie> gPies;
@@ -93,6 +94,7 @@ public class GameField extends JPanel {
 	 */
 	public GameField(final Pie[][] map, final int size, final int pieSize){
 		super();
+		boom = false;
 		setOpaque(false);
 		setLayout(new GridBagLayout());
 		setSize(new Dimension(size*pieSize, size*pieSize));
@@ -146,7 +148,7 @@ public class GameField extends JPanel {
 			gPies.put(p, gp);
 			gPies.get(p).button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e){
-					p.addSlice(Game.getCurrentPlayer());
+					if(!boom)p.addSlice(Game.getCurrentPlayer());
 				}
 			});
 			gp.button.setFocusPainted(false);
@@ -158,6 +160,7 @@ public class GameField extends JPanel {
 			grid[gp.coordinate.x][gp.coordinate.y].add(gp.button);
 		}
 		
+				
 		/*borders = new JPanel(){
 			protected void paintComponent(Graphics g){
 				g.setColor(Color.black);
@@ -289,4 +292,9 @@ public class GameField extends JPanel {
 		}*/
 
 	}
+	
+	public void exploding(){
+		boom = !boom;
+	}
+	
 }
