@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -53,7 +54,8 @@ public class GameField extends JPanel {
 	 */
 	public GameField(Pie[][] map, int size, int pieSize){
 		super();
-		setLayout(null);	//every component needs to be placed manually
+		//setLayout(null);	//every component needs to be placed manually
+		setPreferredSize(new Dimension(size*pieSize, size*pieSize));
 		this.map = map;
 		this.size = size;
 		this.pieSize = pieSize;
@@ -90,6 +92,7 @@ public class GameField extends JPanel {
 	 */
 	@Override
 	protected void paintComponent(Graphics g){
+		super.paintComponent(g);
 		//colors the field accordingly to the gamestate
 		for(int i=0; i<size; i++){
 			for(int j=0; j<size; j++){

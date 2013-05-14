@@ -13,7 +13,7 @@ public class Init {
 	 * 
 	 * 
 	 */
-	public Pie[][] generate(int size, GUI home){
+	public static Pie[][] generate(int size, GUI home){
 		Pie[][] finalGrid = new Pie[size][size];
 		//assign random numbers to make the map from
 		int[][] baseGrid = randomGrid(size);
@@ -45,7 +45,7 @@ public class Init {
 		return finalGrid;
 	}
 	
-	private int[][] randomGrid(int size){
+	private static int[][] randomGrid(int size){
 		Random r = new Random();
 		int[][] retval = new int[size][size];
 		for(int x = 0; x < size; x++){

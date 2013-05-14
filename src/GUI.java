@@ -1,5 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+
 import javax.swing.*;
 
 /**
@@ -9,12 +11,11 @@ import javax.swing.*;
  * @authors Martin Mützell, Sean Wenström
  * @version 2013-05-13
  */
-public class GUI {
+public class GUI extends JFrame{
 	
 	private static final int PIE_SIZE = 40; //pieSize to send to gameField
 	private static final int DFLT_SIZE = 10; //default size of map
 	
-	private JFrame frame;
 	private JPanel panel;
 	private GameField gameField;
 	
@@ -28,19 +29,23 @@ public class GUI {
 	 * Constructs a new GUI.
 	 */
 	public GUI() {
-		size = DFLT_SIZE; //
-		players = new ArrayList<Player>();
+		super("Bammi");
+		
+		int size = DFLT_SIZE; //
+		ArrayList<Player> players = new ArrayList<Player>();
 		players.add(new User(Color.BLUE));
 		players.add(new User(Color.RED));
-		Game.setPlayers(players.toArray());
+		Game.setPlayers(players);
 		
-		frame = new JFrame("Bammi");
+		
 		makeMenuBar();
 		panel = new JPanel();
-		gameField = new GameField(Init.generate(size), size, PIE_SIZE);
+		gameField = new GameField(Init.generate(size, this), size, PIE_SIZE);
 		panel.add(gameField);
-		frame.add(panel);
-		frame.setVisible(true);
+		panel.add(new Label("test"));
+		getContentPane().add(panel);
+		pack();
+		setVisible(true);
 	}
 	
 	/**
@@ -49,7 +54,7 @@ public class GUI {
 	 */
 	private void makeMenuBar(){
 		JMenuBar menuBar = new JMenuBar();
-		frame.setJMenuBar(menuBar);
+		setJMenuBar(menuBar);
 		
 		//The game menu
 		JMenu gameMenu = new JMenu("Game");
@@ -102,7 +107,7 @@ public class GUI {
 	 * Starts a new game.
 	 */
 	private void newGame(){
-		GameField = new GameField();
+	//	GameField = new GameField();
 	}
 	 
 	 
