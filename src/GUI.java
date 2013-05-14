@@ -31,6 +31,7 @@ public class GUI extends JFrame{
 	private GameField gameField;
 	private JLabel turn;
 	private JLabel[] score;
+	private JPanel turnBoard, scoreBoard;
 	
 	private ArrayList<Player> players;
 	private Color[] colors = new Color[] {null, null, Color.GREEN, Color.YELLOW, Color.BLACK};
@@ -55,16 +56,19 @@ public class GUI extends JFrame{
 		turn = new JLabel();
 		turn.setBackground(Color.white);
 		turn.setText("Take over all Pies!");
-		pane.add(turn, BorderLayout.NORTH);
+		turnBoard = new JPanel();
+		turnBoard.add(turn);
+		pane.add(turnBoard, BorderLayout.PAGE_START);
 		gameField = new GameField(Init.generate(size, this), size, PIE_SIZE);
 		pane.add(gameField, BorderLayout.CENTER);
+		scoreBoard = new JPanel();
 		score = new JLabel[players.size()];
 		for(int i=0; i<score.length; i++){
 			score[i] = new JLabel();
-			System.out.println("s");
 			score[i].setBackground(Color.white);
-			pane.add(score[i], BorderLayout.SOUTH);
+			scoreBoard.add(score[i]);
 		}
+		add(scoreBoard, BorderLayout.PAGE_END);
 		updateText();
 		pack();
 		setVisible(true);
@@ -140,14 +144,12 @@ public class GUI extends JFrame{
 		pane.remove(gameField);
 		gameField = new GameField(Init.generate(size, this), size, PIE_SIZE);
 		pane.add(gameField);
-		for(JLabel s : score){
-			pane.remove(s);
-		}
+		scoreBoard.removeAll();
 		score = new JLabel[players.size()];
 		for(int j=0; j<score.length; j++){
 			score[j] = new JLabel();
 			score[j].setBackground(Color.white);
-			pane.add(score[j], BorderLayout.SOUTH);
+			scoreBoard.add(score[j]);
 		}
 		updateText();
 		setVisible(true);
