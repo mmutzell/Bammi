@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -55,7 +56,7 @@ public class GameField extends JPanel {
 	 */
 	public GameField(Pie[][] map, int size, int pieSize){
 		super();
-		//setLayout(null);	//every component needs to be placed manually
+		setLayout(new GridLayout(size, size));	//every component needs to be placed manually
 		setSize(new Dimension(size*pieSize, size*pieSize));
 		this.map = map;
 		this.size = size;
@@ -107,7 +108,6 @@ public class GameField extends JPanel {
 				else{
 					grid[i][j].setBackground(map[i][j].getOwner().getColor());
 				}
-				g.fillRect(i*pieSize, j*pieSize, pieSize, pieSize);
 			}
 		}
 		
