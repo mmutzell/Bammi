@@ -13,7 +13,7 @@ import javax.swing.*;
  */
 public class GUI extends JFrame{
 	
-	private static final int PIE_SIZE = 30; //pieSize to send to gameField
+	private static final int PIE_SIZE = 40; //pieSize to send to gameField
 	private static final int DFLT_SIZE = 10; //default size of map
 	
 	private JPanel panel;
