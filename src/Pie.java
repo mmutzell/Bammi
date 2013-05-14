@@ -69,6 +69,9 @@ class Pie{
 	}
 	
 	public int currentSlices(){
+		if(exploding){
+			return maxSlices;
+		}
 		return currentSlices;
 	}
 	
