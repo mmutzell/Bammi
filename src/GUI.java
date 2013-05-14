@@ -251,7 +251,9 @@ public class GUI extends JFrame{
 			JOptionPane.showMessageDialog(this, "No more players left to add.");
 			return;
 		}
-		Colour chosenColor = options[JOptionPane.showOptionDialog(this, "Please select a color:", "New player" , JOptionPane.PLAIN_MESSAGE, JOptionPane.DEFAULT_OPTION, null, options, options[0])];
+		int chosenIndex = JOptionPane.showOptionDialog(this, "Please select a color:", "New player" , JOptionPane.PLAIN_MESSAGE, JOptionPane.DEFAULT_OPTION, null, options, options[0]);
+		if(chosenIndex == -1) return;
+		Colour chosenColor = options[chosenIndex];
 		if(chosenColor != null) players.add(new User(chosenColor));
 		//nullify chosen color in main array
 		colors[chosenColor.getIndex()] = null;
@@ -281,14 +283,15 @@ public class GUI extends JFrame{
 			JOptionPane.showMessageDialog(this, "You cannot remove the last player.\nPlease add another player first.");
 			return;
 		}
-		
-		Color chosenColor = c[JOptionPane.showOptionDialog(this, "Please select a player to remove:", "Remove player" , JOptionPane.PLAIN_MESSAGE, JOptionPane.DEFAULT_OPTION, null, c, c[0])];
+		int chosenIndex = JOptionPane.showOptionDialog(this, "Please select a player to remove:", "Remove player" , JOptionPane.PLAIN_MESSAGE, JOptionPane.DEFAULT_OPTION, null, c, c[0]);
+		if(chosenIndex == -1) return;
+		Colour chosenColor = (Colour)c[chosenIndex];
 		for(i = 0; i<players.size(); i++){
 			if(players.get(i).getColor() == chosenColor) players.remove(i);
 		}
 		
 		//place color back as choosable
-		colors[((Colour)chosenColor).getIndex()] = (Colour)chosenColor;
+		colors[chosenColor.getIndex()] = chosenColor;
 
 		for(JLabel s : score){
 			pane.remove(s);
