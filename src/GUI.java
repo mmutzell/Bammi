@@ -221,9 +221,9 @@ public class GUI extends JFrame{
 			score[i].setBackground(Color.white);
 			pane.add(score[i], BorderLayout.SOUTH);
 		}
+		Game.newGame(players);
 		updateText();
 		
-		Game.newGame(players);
 	}
 	
 	private void settings_remPlayer(){
@@ -255,9 +255,9 @@ public class GUI extends JFrame{
 			score[j].setBackground(Color.white);
 			pane.add(score[j], BorderLayout.SOUTH);
 		}
-		updateText();
 		
 		Game.newGame(players);
+		updateText();
 		
 	}
 	

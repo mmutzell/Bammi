@@ -40,18 +40,17 @@ class Pie{
 		if(currentSlices == maxSlices){
 			lightFuse(player);
 		}
-		else{
-			currentSlices++;
-			if(owner == null){
-				player.addPie();
-				owner = player;
-			}
-			else if(owner != player){ //triggered by explosion
-				player.addPie();
-				owner.removePie();
-				owner = player;
-			}
+		if(owner == null){
+			player.addPie();
+			owner = player;
 		}
+		else if(owner != player){ //triggered by explosion
+			player.addPie();
+			owner.removePie();
+			owner = player;
+		}
+		currentSlices++;
+		if(currentSlices > maxSlices) explode(player);
 		home.repaint();
 	}
 	
