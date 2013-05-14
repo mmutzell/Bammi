@@ -13,6 +13,13 @@ import javax.swing.*;
  */
 public class GUI extends JFrame{
 	
+	private static final String HOW_TO_PLAY = "Turn the entire playing field to your colour to win!" +
+			"\n\nClick a neutral pie to claim it, or one of your own pies to add a slice to it." +
+			"\nAdding a slice to a full pie will cause it to explode, moving one slice to each of its " +
+			"neighbours and turning them to your colour. These explosions can chain, making it possible to " +
+			"claim many pies by adding a single slice.";
+	private static final String ABOUT_BAMMI = ""; //TODO
+	
 	private static final int PIE_SIZE = 60; //pieSize to send to gameField
 	private static final int DFLT_SIZE = 10; //default size of map
 	
@@ -117,7 +124,7 @@ public class GUI extends JFrame{
 		for(int i=0; i<score.length; i++){
 			score[i].setForeground(players.get(i).getColor());
 			score[i].setText(((Integer)(players.get(i).getNumberOfPies())).toString());
-			}
+		}
 	}
 	
 	/**
@@ -152,14 +159,14 @@ public class GUI extends JFrame{
 	 * Brings up a new frame, displaying the rules.
 	 */
 	private void howToPlay(){
-		//TODO
+		JOptionPane.showMessageDialog(null, HOW_TO_PLAY);
 	}
 	
 	/**
 	 * Brings up a new frame with information about the game.
 	 */
 	private void aboutBammi(){
-		//TODO
+		JOptionPane.showMessageDialog(null, ABOUT_BAMMI);
 	}
 	
 	/**
@@ -201,7 +208,7 @@ public class GUI extends JFrame{
 	 */
 	private void settings_newSize(){
 		try{
-			int newSize = Integer.parseInt(JOptionPane.showInputDialog("Please enter the new map size."));
+			int newSize = Integer.parseInt(JOptionPane.showInputDialog("Please enter the new map size.").toString());
 			if(newSize < 2){
 				JOptionPane.showMessageDialog(null, "Please enter a number greater than 1.");
 				return;
