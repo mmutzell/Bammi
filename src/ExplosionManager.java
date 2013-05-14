@@ -11,7 +11,6 @@ class ExplosionManager{
 
 	public static void go(){
 		for(int i=0; i<4; i++){
-			
 		}
 	}
 }

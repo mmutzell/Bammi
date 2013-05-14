@@ -41,20 +41,27 @@ public class PieIcon implements Icon {
 			g.setColor(Color.white);
 		}
 		g.fill(bounds);
+		g.setColor(Color.white);
+		g.fillOval(0, 0, bounds.height, bounds.width);
 		int space = pie.maxSlices();
 		int painted = pie.currentSlices();
 		float degree = (float) (360/space);
 		for(int i=0; i<space; i++){
-			Arc2D.Float slice = new Arc2D.Float(bounds, (float)(i*degree/*+Math.PI/2*/), (float)((i+1)*degree/*+Math.PI/2*/), Arc2D.PIE);
+			int type;
+			if(space==1){
+				type = Arc2D.OPEN;
+			}
+			else{
+				type = Arc2D.PIE;
+			}
+			Arc2D.Float slice = new Arc2D.Float(bounds, (float)(i*degree), (float)((i+1)*degree), type);
 			if(hasOwner && painted>0){
 				g.setColor(pie.getOwner().getColor());
 				g.fill(slice);
 				painted--;
 			}
-			
 			g.setColor(Color.black);
 			g.draw(slice);
-			
 		}
 	}
 
