@@ -5,7 +5,7 @@ public class Game {
 	
 	private static ArrayList<Player> players;
 	private static int playerIndex = 0;
-	private static GUI home;
+	public static GUI home;
 //	private static Pie[][] map;
 //	private static int size;
 

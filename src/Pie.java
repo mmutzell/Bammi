@@ -68,6 +68,10 @@ class Pie{
 	public int currentSlices(){
 		return currentSlices;
 	}
+	
+	public boolean exploding(){
+		return exploding;
+	}
 
 	private void lightFuse(Player player){
 		currentSlices = 1;
@@ -80,8 +84,8 @@ class Pie{
 		for(Pie neighbor :neighbors){
 			neighbor.add(player);
 		}
-		//TODO: graphics
-		exploding = currentSlices > maxSlices;
+		home.repaint();
+		exploding = false;
 		ExplosionManager.go();
 	}
 }

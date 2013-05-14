@@ -17,7 +17,7 @@ public class PieIcon implements Icon {
 	public PieIcon(Pie p, int size){
 		pie = p;
 		bounds = new Rectangle(size-1, size-1);
-		flash = true;
+		flash = false;
 	}
 
 	@Override
@@ -43,6 +43,15 @@ public class PieIcon implements Icon {
 		g.fill(bounds);
 		g.setColor(Color.white);
 		g.fillOval(0, 0, bounds.height, bounds.width);
+		
+		if(pie.exploding()){
+			System.out.println("df");
+			flash = !flash;
+			if(flash){
+				return;
+			}
+		}
+		
 		int space = pie.maxSlices();
 		int painted = pie.currentSlices();
 		float degree = (float) (360/space);
