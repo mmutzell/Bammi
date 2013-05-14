@@ -190,7 +190,7 @@ public class GUI extends JFrame{
 		size.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				settings_showMapSize();
+				settings_newSize();
 			}
 		});
 		settings.add(size);
@@ -201,8 +201,20 @@ public class GUI extends JFrame{
 	/**
 	 * Displays a dialog box for entering the new size.
 	 */
-	private void settings_showMapSize(){
-		//TODO
+	private void settings_newSize(){
+		try{
+			int newSize = Integer.parseInt(JOptionPane.showInputDialog("Please enter the new map size."));
+			if(newSize < 2){
+				JOptionPane.showMessageDialog(null, "Please enter a number greater than 1.");
+				return;
+			}
+			this.size = newSize;
+			Game.newGame();
+		}catch(NullPointerException e){	//window closed, do nothing
+		}catch(NumberFormatException e){
+			JOptionPane.showMessageDialog(null, "Please enter a valid number.");
+		}
+
 	}
 	
 	/**
@@ -221,10 +233,20 @@ public class GUI extends JFrame{
 				actualIndex++;
 			}
 		}
-		Color chosenColor = options[JOptionPane.showOptionDialog(this, "Please select a color other than null:", "New player" , JOptionPane.PLAIN_MESSAGE, JOptionPane.DEFAULT_OPTION, null, options, options[0])];
+		Color chosenColor = options[JOptionPane.showOptionDialog(this, "Please select a color:", "New player" , JOptionPane.PLAIN_MESSAGE, JOptionPane.DEFAULT_OPTION, null, options, options[0])];
 		if(chosenColor != null) players.add(new User(chosenColor));
 		
-		Game.newGame(players);		
+		for(JLabel s : score){
+			pane.remove(s);
+		}
+		score = new JLabel[players.size()];
+		for(int i=0; i<score.length; i++){
+			score[i] = new JLabel();
+			score[i].setBackground(Color.white);
+			pane.add(score[i], BorderLayout.SOUTH);
+		}
+		Game.newGame();
+		updateText();
 	}
 	
 	private void settings_remPlayer(){
@@ -246,7 +268,19 @@ public class GUI extends JFrame{
 				break;
 			}
 		}
-		Game.newGame(players);
+
+		for(JLabel s : score){
+			pane.remove(s);
+		}
+		score = new JLabel[players.size()];
+		for(int j=0; j<score.length; j++){
+			score[j] = new JLabel();
+			score[j].setBackground(Color.white);
+			pane.add(score[j], BorderLayout.SOUTH);
+		}
+		
+		Game.newGame();
+		updateText();
 		
 	}
 	

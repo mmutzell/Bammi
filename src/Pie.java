@@ -35,9 +35,6 @@ class Pie{
 	}
 	
 	private void add(Player player){
-		if(currentSlices == maxSlices){
-			lightFuse(player);
-		}
 		if(owner == null){
 			player.addPie();
 			owner = player;
@@ -48,7 +45,7 @@ class Pie{
 			owner = player;
 		}
 		currentSlices++;
-		if(currentSlices > maxSlices) explode(player);
+		if(currentSlices > maxSlices) lightFuse(player);
 		home.repaint();
 	}
 	
@@ -83,7 +80,8 @@ class Pie{
 		for(Pie neighbor :neighbors){
 			neighbor.add(player);
 		}
-		exploding = false;
+		//TODO: graphics
+		exploding = currentSlices > maxSlices;
 		ExplosionManager.go();
 	}
 }
