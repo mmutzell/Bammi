@@ -48,7 +48,7 @@ class ExplosionManager{
 	 */
 	public static void flush(){
 		//Stops any impending explosions by adding
-		//a dummy list with a dummy pie.
+		//a dummy list.
 		exploding = new LinkedList<Pie>(){
 			@Override
 			public int size(){

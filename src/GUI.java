@@ -21,7 +21,9 @@ public class GUI extends JFrame{
 	private static final String ABOUT_BAMMI = "This is our implementation of Bammi, done as a programming project " +
 			"for the Introductory Course to Computer Science, DD1339, at KTH in Sweden. " +
 			"\n\nThis is based on the original implementation of Bammi, which can be found " +
-			"on \nwww.bammi.com"; 
+			"on \nwww.bammi.com" +
+			"\n\nMartin Mützell" +
+			"\nSean Wenström"; 
 	
 	private static final int PIE_SIZE = 60; //pieSize to send to gameField
 	private static final int DFLT_SIZE = 10; //default size of map
