@@ -23,7 +23,6 @@ class Pie{
 
 	public void addSlice(Player player){
 		if(owner == null || owner == player){
-			Game.nextPlayer();
 			if(currentSlices == maxSlices){
 				add(player);
 				ExplosionManager.go();
@@ -31,6 +30,7 @@ class Pie{
 			else{
 				add(player);
 			}
+			Game.nextPlayer();
 		}
 	}
 	
