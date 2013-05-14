@@ -27,21 +27,18 @@ class Pie{
 	}
 	
 	private void add(Player player){
-		if(currentSlices == maxSlices){
-			explode(player);
+		
+		if(owner == null){
+			player.addPie();
+			owner = player;
 		}
-		else{
-			currentSlices++;
-			if(owner == null){
-				player.addPie();
-				owner = player;
-			}
-			else if(owner != player){ //triggered by explosion
-				player.addPie();
-				owner.removePie();
-				owner = player;
-			}
+		else if(owner != player){ //triggered by explosion
+			player.addPie();
+			owner.removePie();
+			owner = player;
 		}
+		currentSlices++;
+		if(currentSlices > maxSlices) explode(player);
 		home.repaint();
 	}
 	

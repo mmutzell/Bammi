@@ -25,7 +25,6 @@ public class Game {
 //	public Game(Player[] p, )
 	
 	public static void newGame(ArrayList<Player> p){
-		players = p;
 		playerIndex = 0;
 		home.newGame();
 	}
