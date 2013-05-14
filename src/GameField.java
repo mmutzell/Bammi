@@ -17,9 +17,9 @@ import javax.swing.JPanel;
 
 /**
  * Handles the drawing and interaction with the gamefield
- * in Sean WenstrÃ¶ms and Martin MÃ¼tzells implementation of
+ * in Sean Wenströms and Martin Mützells implementation of
  * Bammi.
- * @author Martin MÃ¼tzell
+ * @author Martin Mützell
  */
 public class GameField extends JPanel {
 
@@ -62,7 +62,7 @@ public class GameField extends JPanel {
 	public GameField(Pie[][] map, int size, int pieSize){
 		super();
 		setLayout(new GridBagLayout());
-		setSize(new Dimension(size*pieSize, size*pieSize));
+		setSize(new Dimension(size*(pieSize*2+1), size*(pieSize*2+1)));
 		setBackground(Color.white);
 		this.map = map;
 		this.size = size;
@@ -132,7 +132,7 @@ public class GameField extends JPanel {
 		}
 		
 		//draws the borders differentiating the pie areas
-		g.setColor(Color.black);
+		/*g.setColor(Color.black);
 		for(int i=0; i<size-1; i++){
 			for(int j=0; j>size-1; j++){
 				Pie currentPie = map[i][j];
@@ -143,7 +143,7 @@ public class GameField extends JPanel {
 					g.drawLine(i*pieSize, (j+1)*pieSize, (i+1)*pieSize, (j+1)*pieSize);
 				}
 			}
-		}
+		}*/
 
 	}
 }

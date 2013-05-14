@@ -8,7 +8,7 @@ import javax.swing.*;
  * A graphical user interface for Bammi. The main window
  * that the user interacts with during use.
  * 
- * @authors Martin MÃ¼tzell, Sean WenstrÃ¶m
+ * @authors Martin Mützell, Sean Wenström
  * @version 2013-05-13
  */
 public class GUI extends JFrame{

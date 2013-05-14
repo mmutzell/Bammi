@@ -54,7 +54,7 @@ public class PieIcon implements Icon {
 			else{
 				type = Arc2D.PIE;
 			}
-			Arc2D.Float slice = new Arc2D.Float(bounds, (float)(i*degree), (float)((i+1)*degree), type);
+			Arc2D.Float slice = new Arc2D.Float(bounds, (float)(i*degree+90), degree, type);
 			if(hasOwner && painted>0){
 				g.setColor(pie.getOwner().getColor());
 				g.fill(slice);
