@@ -48,12 +48,12 @@ public class GUI extends JFrame{
 		gameField = new GameField(Init.generate(size, this), size, PIE_SIZE);
 		pane.add(gameField, BorderLayout.CENTER);
 		score = new JLabel[players.size()];
-		for(int i=0; i<score.length; i++){
-			score[i] = new JLabel();
-			score[i].setBackground(Color.white);
-			pane.add(score[i], BorderLayout.SOUTH);
+		for(int j=0; j<score.length; j++){
+			score[j] = new JLabel();
+			score[j].setBackground(Color.white);
+			pane.add(score[j], BorderLayout.SOUTH);
+			updateText();
 		}
-		updateText();
 		pack();
 		setVisible(true);
 	}
@@ -127,6 +127,16 @@ public class GUI extends JFrame{
 		pane.remove(gameField);
 		gameField = new GameField(Init.generate(size, this), size, PIE_SIZE);
 		pane.add(gameField);
+		for(JLabel s : score){
+			pane.remove(s);
+		}
+		score = new JLabel[players.size()];
+		for(int j=0; j<score.length; j++){
+			score[j] = new JLabel();
+			score[j].setBackground(Color.white);
+			pane.add(score[j], BorderLayout.SOUTH);
+			updateText();
+		}
 		setVisible(true);
 	}
 	 
@@ -212,18 +222,7 @@ public class GUI extends JFrame{
 		Color chosenColor = options[JOptionPane.showOptionDialog(this, "Please select a color other than null:", "New player" , JOptionPane.PLAIN_MESSAGE, JOptionPane.DEFAULT_OPTION, null, options, options[0])];
 		if(chosenColor != null) players.add(new User(chosenColor));
 		
-		for(JLabel s : score){
-			pane.remove(s);
-		}
-		score = new JLabel[players.size()];
-		for(int i=0; i<score.length; i++){
-			score[i] = new JLabel();
-			score[i].setBackground(Color.white);
-			pane.add(score[i], BorderLayout.SOUTH);
-		}
-		Game.newGame(players);
-		updateText();
-		
+		Game.newGame(players);		
 	}
 	
 	private void settings_remPlayer(){
@@ -245,19 +244,7 @@ public class GUI extends JFrame{
 				break;
 			}
 		}
-
-		for(JLabel s : score){
-			pane.remove(s);
-		}
-		score = new JLabel[players.size()];
-		for(int j=0; j<score.length; j++){
-			score[j] = new JLabel();
-			score[j].setBackground(Color.white);
-			pane.add(score[j], BorderLayout.SOUTH);
-		}
-		
 		Game.newGame(players);
-		updateText();
 		
 	}
 	
@@ -270,5 +257,4 @@ public class GUI extends JFrame{
 	public GameField getGameField(){
 		return gameField;
 	}
-	
 }

@@ -11,11 +11,9 @@ class Pie{
 	private int currentSlices;
 	private Player owner; //Pointer
 	private boolean exploding;
-	private ExplosionManager em;
 
-	public Pie(GUI home, ExplosionManager em){
+	public Pie(GUI home){
 		this.home = home;  //Pointer
-		this.em = em;
 		neighbors = new java.util.HashSet<Pie>();
 		maxSlices = 0;
 		currentSlices = 0;
@@ -28,7 +26,7 @@ class Pie{
 			Game.nextPlayer();
 			if(currentSlices == maxSlices){
 				add(player);
-				em.go();
+				ExplosionManager.go();
 			}
 			else{
 				add(player);
@@ -78,7 +76,7 @@ class Pie{
 		currentSlices = 1;
 		owner = player;
 		exploding = true;
-		em.add(this);
+		ExplosionManager.add(this);
 	}
 
 	public void explode(Player player){
@@ -86,6 +84,6 @@ class Pie{
 			neighbor.add(player);
 		}
 		exploding = false;
-		em.go();
+		ExplosionManager.go();
 	}
 }

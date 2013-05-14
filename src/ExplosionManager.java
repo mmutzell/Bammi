@@ -1,21 +1,17 @@
 import java.util.*;
 import java.lang.*;
 
-class ExlosionManager{
+class ExplosionManager{
 	
-	private LinkedList<Pie> exploding;
-	private GUI home;
+	private static LinkedList<Pie> exploding = new LinkedList<Pie>();
 
-	public ExplosionManager(){
-		exploding = new LinkedList<Pie>;
-	}
-
-	public add(Pie p){
+	public static void add(Pie p){
 		exploding.add(p);
 	}
 
-	public go(){
+	public static void go(){
 		for(int i=0; i<4; i++){
-			home.
-    
+			
+		}
+	}
 }
