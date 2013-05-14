@@ -43,7 +43,6 @@ public class Game {
 		if(++playerIndex == players.size()) playerIndex = 0;
 		getCurrentPlayer().checkLoss();
 		if(getCurrentPlayer().hasLost()) nextPlayer();
-		System.err.println("Unowned pies: "+unownedPies);
 	}
 	
 	/**
