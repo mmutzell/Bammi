@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 public class GameField extends JPanel {
 
 	private Pie[][] map;
+	private JPanel[][] grid;
 	private HashMap<Pie, graphicalPie> gPies;
 	private int size, pieSize;
 	
@@ -55,15 +56,19 @@ public class GameField extends JPanel {
 	public GameField(Pie[][] map, int size, int pieSize){
 		super();
 		//setLayout(null);	//every component needs to be placed manually
-		setPreferredSize(new Dimension(size*pieSize, size*pieSize));
+		setSize(new Dimension(size*pieSize, size*pieSize));
 		this.map = map;
 		this.size = size;
 		this.pieSize = pieSize;
+		this.grid = new JPanel[size][size];
 		
 		HashMap<Pie, ArrayList<coordinate>> pieAreas = new HashMap<Pie, ArrayList<coordinate>>();
 		for(int i=0; i<size; i++){
 			for(int j=0; j<size; j++){
 				Pie currentPie = map[i][j];
+				grid[i][j] = new JPanel();
+				grid[i][j].setSize(new Dimension(pieSize, pieSize));
+				add(grid[i][j]);
 				if(!pieAreas.containsKey(currentPie)){
 					pieAreas.put(currentPie, new ArrayList<coordinate>());
 				}
@@ -82,8 +87,8 @@ public class GameField extends JPanel {
 					p.addSlice(Game.getCurrentPlayer());
 				}
 			});
-			gp.button.setBounds(gp.coordinate.x+border, gp.coordinate.y+border, pieSize-2*border, pieSize-2*border);
-			add(gp.button);
+			gp.button.setSize(pieSize-2*border, pieSize-2*border);
+			grid[gp.coordinate.x][gp.coordinate.y].add(gp.button);
 		}
 	}
 	
@@ -97,10 +102,10 @@ public class GameField extends JPanel {
 		for(int i=0; i<size; i++){
 			for(int j=0; j<size; j++){
 				if(map[i][j].getOwner() == null){
-					g.setColor(Color.white);
+					grid[i][j].setBackground(Color.white);
 				}
 				else{
-					g.setColor(map[i][j].getOwner().getColor());
+					grid[i][j].setBackground(map[i][j].getOwner().getColor());
 				}
 				g.fillRect(i*pieSize, j*pieSize, pieSize, pieSize);
 			}
