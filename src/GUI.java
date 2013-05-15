@@ -153,7 +153,7 @@ public class GUI extends JFrame{
 			scoreBoard.add(score[j]);
 		}
 		updateText();
-		setVisible(true);
+		repaint();
 	}
 	 
 	 
@@ -217,7 +217,7 @@ public class GUI extends JFrame{
 	 */
 	private void settings_newSize(){
 		try{
-			int newSize = Integer.parseInt(JOptionPane.showInputDialog("Please enter the new map size.").toString());
+			int newSize = Integer.parseInt(JOptionPane.showInputDialog("Please enter the desired map size:\nA single number greater than one to define the side of the square map.").toString());
 			if(newSize < 2){
 				JOptionPane.showMessageDialog(null, "Please enter a number greater than 1.");
 				return;
@@ -269,6 +269,7 @@ public class GUI extends JFrame{
 		}
 		Game.newGame();
 		updateText();
+		repaint();
 	}
 	
 	private void settings_remPlayer(){

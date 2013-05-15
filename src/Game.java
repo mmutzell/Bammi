@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.util.ArrayList;
 
 
@@ -14,7 +15,7 @@ public class Game {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		
+		System.out.println(Color.RED);
 		
 		//size = 5;
 		//map = Initiate.generateMap(size);
@@ -28,10 +29,10 @@ public class Game {
 	public static void newGame(){
 		unownedPies = 0;
 		playerIndex = 0;
-		home.newGame();
 		for(Player p : players){
 			p.unlose();
 		}
+		home.newGame();
 		ExplosionManager.reset();
 	}
 
